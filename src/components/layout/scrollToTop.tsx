@@ -7,7 +7,7 @@ interface SideNavProps {
 }
 
 export const ScrollToTop: React.FC<SideNavProps> = ({ containerRef }) => {
-  const [showText, setShowText] = useState(false);
+  const [showText, setShowText] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {

@@ -1,8 +1,9 @@
-import { Box, Drawer, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { NavbarLink } from './navbarLink';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { DropDown } from '../shared/dropdown';
+import { CustomDrawer } from './customDrawer';
 
 export const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
@@ -33,7 +34,9 @@ export const Navbar = () => {
         >
           <Box>Foto Miskic</Box>
           <Box
+            height={50}
             display="flex"
+            alignItems="center"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -58,33 +61,22 @@ export const Navbar = () => {
             <NavbarLink link=". . ." onClick={() => setOpenDrawer(true)} />
           </Box>
         </Box>
-        <Drawer
-          anchor="right"
-          open={openDrawer}
+        <CustomDrawer
+          openDrawer={openDrawer}
           onClose={() => toggleDrawer(false)}
-        >
-          {/* Place your drawer content here */}
-          <div style={{ width: '250px' }}>
-            <Typography variant="h6" style={{ padding: '16px' }}>
-              Drawer Content
-            </Typography>
-            {/* Add more items or links for the drawer */}
-          </div>
-        </Drawer>
-      </Box>
-      {isHovered && (
-        <Box
-          bgcolor="black"
-          position="fixed"
-          width="100%"
-          height="100vh"
-          zIndex={4}
-          sx={{
-            opacity: isHovered ? 0.8 : 0, // Change opacity based on isHovered
-            transition: 'opacity 0.3s ease', // Add transition
-          }}
         />
-      )}
+      </Box>
+      <Box
+        bgcolor="black"
+        position="fixed"
+        width="100%"
+        height="100vh"
+        zIndex={isHovered ? 4 : -1}
+        sx={{
+          opacity: isHovered ? 0.7 : 0,
+          transition: 'opacity 0.3s ease',
+        }}
+      />
     </>
   );
 };
