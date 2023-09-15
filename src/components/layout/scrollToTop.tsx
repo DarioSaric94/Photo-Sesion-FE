@@ -39,7 +39,13 @@ export const ScrollToTop: React.FC<SideNavProps> = ({ containerRef }) => {
   };
 
   return (
-    <Grid item xs={1} lg={2} display="flex" justifyContent="center">
+    <Grid
+      item
+      xs={1}
+      lg={2}
+      sx={{ display: { xs: 'none', lg: 'flex' } }}
+      justifyContent="center"
+    >
       <Box display="flex" alignItems="center">
         <Typography
           sx={{

@@ -1,6 +1,5 @@
 import { Container } from '@/components/layout/container';
 import { YoutubeVideo } from '@/components/shared/youtubeVideo';
-import { Grid, Typography } from '@mui/material';
 
 export default function Portfolio() {
   return (

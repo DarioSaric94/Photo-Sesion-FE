@@ -25,7 +25,7 @@ export const ContactInfo = () => {
     },
   };
   return (
-    <Box>
+    <Box color="primary.main">
       <Typography fontWeight="bold" fontSize={12}>
         KONTAKT I DRUŠTVENE MREŽE
       </Typography>

@@ -18,7 +18,7 @@ export const Container: React.FC<ContainerProps> = ({ children }) => {
   return (
     <Grid container>
       <SideNav detailText={detailText} pageText={pageText} />
-      <Grid item xs={10} lg={8}>
+      <Grid item xs={12} lg={8}>
         <Grid
           container
           ref={containerRef}
@@ -29,16 +29,17 @@ export const Container: React.FC<ContainerProps> = ({ children }) => {
             overflowY: 'scroll',
             scrollBehavior: 'smooth',
           }}
+          pr={3}
+          pl={3}
         >
           <Grid
             item
             xs={12}
-            height={600}
             display="flex"
             justifyContent="center"
             alignItems="center"
             flexDirection="column"
-            pt={20}
+            sx={{ pt: { xs: 0, lg: 20 }, height: { xs: 300, lg: 500 } }}
           >
             <Typography textAlign="center" color="primary.main" maxWidth={600}>
               {text1}
