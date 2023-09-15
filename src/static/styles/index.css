@@ -1,66 +1,25 @@
 body {
-  background-color: white;
+  background: linear-gradient(90deg, rgba(56,56,56,1) 2%, rgba(0,0,0,1) 73%);
   margin: 0px;
   padding: 0px;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+}
+::-webkit-scrollbar {
+  display: none;
 }
 
-.border {
-  border: black solid 1px;
-}
-.height-300 {
-  height: 300px;
-}
-.hover:hover {
-  color: white !important;
+.white-border {
+  border-right: rgba(255, 255, 255, 0.1) solid 1px;
 }
 
-.height-100vh {
-  min-height: calc(100vh - 72px);
+.screen-height {
+  height: calc(100vh - 150px);
 }
 
-.input-border-none {
-  border: none;
-  outline: none;
-  background-color: #faebd7;
+.hovered-text {
+  transition: margin 0.5s ease, opacity 0.3s ease, color 0.3s ease;
 }
-
-.gradient:hover {
-  background: linear-gradient(90deg, rgba(94,255,60,1) 26%, rgba(244,144,4,1) 79%, rgba(255,136,0,0.9864320728291317) 83%)!important;
-}
-
-.w-25 {
-  width: 25px;
-}
-
-.h-25 {
-  height: 25px;
-}
-
-.mb-2 {
-  margin-bottom: 2px;
-}
-
-.shadow {
-  transition: ease-in-out transform 200ms;
-  box-shadow: 6px 8px 1px rgba(0, 0, 0, 0.74);
-}
-
-.scale:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  box-shadow: none;
-}
-
-.lesson-nav-color {
-  background-color: #1f2937;
-}
-
-.sample-lesson-bg-color {
-  background-color: #374151;
-}
-
-.coding-color {
-  color: #A6ACCD;
+.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+  background: transparent;
+  box-shadow: 0 0 0 0 
 }

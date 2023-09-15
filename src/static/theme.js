@@ -1,26 +1,24 @@
 import { createTheme } from '@mui/material';
-import { darken, lighten, alpha } from '@mui/system';
+import { darken, lighten } from '@mui/system';
 
-const primaryColor = '#292524';
-const secondaryColor = '#faebd7';
+const primaryColor = '#8c8c8d';
+const secondaryColor = '#be0000';
+const darkColor = '#'
 
 const theme = createTheme({
   palette: {
     primary: {
       main: primaryColor,
-      light: alpha(primaryColor, 0.8),
-      dark: '#000000',
-      contrastText: '#ffffff',
+      light: lighten(primaryColor, 0.8),
+      dark: darken(primaryColor, 1)
     },
     secondary: {
       main: secondaryColor,
-      light: 'rgb(234 179 8)',
-      dark: darken(secondaryColor, 0.2),
-      contrastText: lighten(secondaryColor, 0.5),
+      light: lighten(secondaryColor, 0.8),
     },
   },
   typography: {
-    fontFamily: 'Arial, sans-serif',
+    fontFamily: 'Montserrat, sans-serif',
   },
 });
 
