@@ -51,12 +51,12 @@ export const ScrollToTop: React.FC<SideNavProps> = ({ containerRef }) => {
           sx={{
             transform: 'rotate(-90deg)',
             opacity: showText ? 1 : 0,
+            transition: '0.3s ease-in-out',
             cursor: 'pointer',
             '&:hover': {
               color: 'primary.light',
             },
           }}
-          className="hovered-text"
           fontWeight="bold"
           fontSize={16}
           mt={showText ? 80 : 90}
@@ -69,18 +69,24 @@ export const ScrollToTop: React.FC<SideNavProps> = ({ containerRef }) => {
           {showText ? 'NAZAD NA' : ''}
         </Typography>
       </Box>
-      <Box className="white-border" />
+      <Box
+        sx={{
+          borderRight: 1,
+          borderColor: 'primary.main',
+          opacity: 0.3,
+        }}
+      />
       <Box display="flex" alignItems="center">
         <Typography
           sx={{
             transform: 'rotate(-90deg)',
             opacity: showText ? 1 : 0,
+            transition: '0.3s ease-in-out',
             cursor: 'pointer',
             '&:hover': {
               color: 'primary.light',
             },
           }}
-          className="hovered-text"
           fontWeight="bold"
           fontSize={50}
           maxWidth={50}

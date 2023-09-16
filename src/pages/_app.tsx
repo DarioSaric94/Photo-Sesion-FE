@@ -14,9 +14,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <Head>
-          <script
-            async
-            src={`https://www.youtube.com/iframe_api?key=AIzaSyAhQcxb3rc8VicWW9NbeuidGFiMUmh_TbA`}
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
           />
         </Head>
         <Navbar />

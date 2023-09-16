@@ -1,6 +1,23 @@
 import { Container } from '@/components/layout/container';
-import { Box } from '@mui/material';
+import { ITEMS } from '@/components/services.components/items';
+import { ListItem } from '@/components/services.components/listItem';
+import { Grid } from '@mui/material';
 
 export default function Services() {
-  return <Container>Services</Container>;
+  return (
+    <Container>
+      <Grid container spacing={4} mb={20}>
+        {ITEMS.map((item) => {
+          return (
+            <ListItem
+              item={item.item}
+              title={item.title}
+              description={item.description}
+              image={item.image}
+            />
+          );
+        })}
+      </Grid>
+    </Container>
+  );
 }

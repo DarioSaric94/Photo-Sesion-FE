@@ -9,19 +9,16 @@ export const SideNav: React.FC<SideNavProps> = ({ detailText, pageText }) => {
   return (
     <Grid
       item
-      xs={12}
       lg={2}
+      sx={{ display: { lg: 'flex', xs: 'none' } }}
       display="flex"
-      sx={{ flexDirection: { xs: 'column', lg: 'row' } }}
       justifyContent="center"
     >
       <Box display="flex" alignItems="center">
         <Typography
           sx={{
-            transform: { lg: 'rotate(-90deg)', xs: '' },
-            maxWidth: { xs: '100%', lg: 50 },
-            textAlign: { xs: 'center', lg: '' },
-            width: { xs: '100%' },
+            transform: 'rotate(-90deg)',
+            maxWidth: 50,
           }}
           fontWeight="bold"
           fontSize={16}
@@ -35,22 +32,17 @@ export const SideNav: React.FC<SideNavProps> = ({ detailText, pageText }) => {
       </Box>
       <Box
         sx={{
-          borderBottom: { xs: 1 },
-          borderRight: { lg: 1 },
-          borderColor: {
-            xs: 'rgba(255, 255, 255, 0.1)',
-            lg: 'rgba(255, 255, 255, 0.1)',
-          },
+          borderRight: 1,
+          borderColor: 'primary.main',
+          opacity: 0.3,
         }}
       />
       <Box display="flex" alignItems="center">
         <Typography
           sx={{
-            transform: { lg: 'rotate(-90deg)', xs: '' },
-            mt: { xs: 0, lg: 10 },
-            maxWidth: { xs: '100%', lg: 50 },
-            textAlign: { xs: 'center', lg: '' },
-            width: { xs: '100%' },
+            transform: 'rotate(-90deg)',
+            mt: 10,
+            maxWidth: 50,
           }}
           fontWeight="bold"
           fontSize={50}

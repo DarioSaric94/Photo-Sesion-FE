@@ -43,6 +43,23 @@ const pageTexts: Record<string, PageTexts> = {
       obliku koji zaslužuju, jer - znamo koliko Vam to znači!`,
     text2: 'Naše uspomene ne blijede...',
   },
+  '/wooden-boxes': {
+    detailText: 'DRVENE',
+    pageText: 'KUTIJE',
+    text1: `Drvena kutija sa graviranjem Vaših imena u kojoj se nalzi
+    USB i Blu Ray disk ili USB sa foto i video materijalom.`,
+    text2:
+      'Dostupno par modela kao i nekoliko boja (plava, crna, smeđa i bordo).',
+  },
+  '/photo-card': {
+    detailText: 'FOTO',
+    pageText: 'ZAHVALNICE',
+    text1: `Želite li pokloniti nešto praktično gostima na vjenčanju ili 
+    krštenju ili na nekom drugom događaju! Zahvalnica je nešto što će ostati 
+    zapamćeno, posebno ako odaberete dobar dizajn.`,
+    text2: `Poklon za važne zvanice koji će vratiti osmijeh na lice svaki put kada 
+      je gosti pogledaju i sjećanje na taj dan.`,
+  },
 };
 
 export function getPageTexts(pathname: string): PageTexts {

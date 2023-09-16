@@ -2,8 +2,10 @@ import { Box } from '@mui/material';
 import { NavbarLink } from './navbarLink';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { DropDown } from '../shared/dropdown';
+import { DropDown } from './dropdown';
 import { CustomDrawer } from './customDrawer';
+import { Logo } from './logo';
+import { SmallScreenNavbar } from './smallScreenNavbar';
 
 export const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
@@ -20,7 +22,6 @@ export const Navbar = () => {
         position="fixed"
         zIndex={5}
         width="100%"
-        height={150}
         color="white"
         display="flex"
         alignItems="center"
@@ -30,9 +31,9 @@ export const Navbar = () => {
           display="flex"
           justifyContent="space-between"
           alignItems="center"
-          p={5}
+          sx={{ p: { xs: 2, lg: 5 } }}
         >
-          <Box>Foto Miskic</Box>
+          <Logo />
           <Box
             height={50}
             display="flex"
@@ -40,24 +41,36 @@ export const Navbar = () => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <NavbarLink link="POČETNA" onClick={() => router.push('/')} />
+            <NavbarLink
+              link="POČETNA"
+              onClick={() => router.push('/')}
+              display={{ xs: 'none', lg: 'flex' }}
+            />
             <NavbarLink
               link="PORTFOLIO"
               onClick={() => router.push('/portfolio')}
+              display={{ xs: 'none', lg: 'flex' }}
             />
             <NavbarLink
               link="PRIVATNO"
               onClick={() => router.push('/private')}
+              display={{ xs: 'none', lg: 'flex' }}
             />
-            <DropDown leaveMouse={() => setIsHovered(false)} />
+            <DropDown
+              leaveMouse={() => setIsHovered(false)}
+              display={{ xs: 'none', lg: 'flex' }}
+            />
             <NavbarLink
               link="USLUGE"
               onClick={() => router.push('/services')}
+              display={{ xs: 'none', lg: 'flex' }}
             />
             <NavbarLink
               link="KONTAKT"
               onClick={() => router.push('/contact')}
+              display={{ xs: 'none', lg: 'flex' }}
             />
+            <SmallScreenNavbar />
             <NavbarLink link=". . ." onClick={() => setOpenDrawer(true)} />
           </Box>
         </Box>

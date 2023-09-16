@@ -1,13 +1,17 @@
 import { Typography, Menu } from '@mui/material';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 interface DropDownProps {
   leaveMouse: () => void;
+  display: any;
 }
 
-export const DropDown: React.FC<DropDownProps> = ({ leaveMouse }) => {
+export const DropDown: React.FC<DropDownProps> = ({ leaveMouse, display }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const router = useRouter();
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -16,8 +20,8 @@ export const DropDown: React.FC<DropDownProps> = ({ leaveMouse }) => {
   };
 
   const handleMouseLeave = () => {
-    handleClose(); // Close the menu on mouse leave
-    leaveMouse(); // Call the leaveMouse function passed as a prop
+    handleClose();
+    leaveMouse();
   };
   return (
     <>
@@ -31,6 +35,7 @@ export const DropDown: React.FC<DropDownProps> = ({ leaveMouse }) => {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         sx={{
+          display,
           transition: 'color 0.3s ease-in-out',
           '&:hover': {
             color: 'primary.light',
@@ -53,7 +58,7 @@ export const DropDown: React.FC<DropDownProps> = ({ leaveMouse }) => {
       >
         <Typography
           mt={3}
-          onClick={handleClose}
+          onClick={() => router.push('/wooden-boxes')}
           fontWeight="bold"
           color="secondary.main"
           sx={{
@@ -69,7 +74,7 @@ export const DropDown: React.FC<DropDownProps> = ({ leaveMouse }) => {
         <Typography
           mt={3}
           mb={1}
-          onClick={handleClose}
+          onClick={() => router.push('/photo-card')}
           fontWeight="bold"
           color="secondary.main"
           sx={{
