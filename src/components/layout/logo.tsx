@@ -1,8 +1,16 @@
 import { Box } from '@mui/material';
+import { useRouter } from 'next/router';
 
 export const Logo = () => {
+  const router = useRouter();
   return (
-    <Box display="flex" letterSpacing={-0.5} fontWeight="bold">
+    <Box
+      display="flex"
+      letterSpacing={-0.5}
+      fontWeight="bold"
+      sx={{ cursor: 'pointer' }}
+      onClick={() => router.push('/')}
+    >
       <Box fontSize={40} color="secondary.main">
         F
       </Box>

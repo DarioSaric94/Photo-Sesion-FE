@@ -6,15 +6,14 @@ import { DropDown } from './dropdown';
 import { CustomDrawer } from './customDrawer';
 import { Logo } from './logo';
 import { SmallScreenNavbar } from './smallScreenNavbar';
+import { SmallScreenDrawer } from './smallScreenDrawer';
 
 export const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
+  const [openSmallScreenDrawer, setOpenSmallScreenDrawer] =
+    useState<boolean>(false);
   const [isHovered, setIsHovered] = useState(false);
   const router = useRouter();
-
-  const toggleDrawer = (isOpen: boolean) => {
-    setOpenDrawer(isOpen);
-  };
 
   return (
     <>
@@ -70,13 +69,17 @@ export const Navbar = () => {
               onClick={() => router.push('/contact')}
               display={{ xs: 'none', lg: 'flex' }}
             />
-            <SmallScreenNavbar />
+            <SmallScreenNavbar onClick={() => setOpenSmallScreenDrawer(true)} />
             <NavbarLink link=". . ." onClick={() => setOpenDrawer(true)} />
           </Box>
         </Box>
         <CustomDrawer
           openDrawer={openDrawer}
-          onClose={() => toggleDrawer(false)}
+          onClose={() => setOpenDrawer(false)}
+        />
+        <SmallScreenDrawer
+          openDrawer={openSmallScreenDrawer}
+          onClose={() => setOpenSmallScreenDrawer(false)}
         />
       </Box>
       <Box

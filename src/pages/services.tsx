@@ -7,9 +7,10 @@ export default function Services() {
   return (
     <Container>
       <Grid container spacing={4} mb={20}>
-        {ITEMS.map((item) => {
+        {ITEMS.map((item, index) => {
           return (
             <ListItem
+              key={index}
               item={item.item}
               title={item.title}
               description={item.description}

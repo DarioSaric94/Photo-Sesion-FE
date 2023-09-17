@@ -51,7 +51,7 @@ export const CustomDrawer: React.FC<CustomDrawerProps> = ({
         </Box>
         <Box
           width="100%"
-          height="100%"
+          height={{ xs: '120%', md: '100%' }}
           bgcolor="primary.contrastText"
           color="primary.main"
           p={5}
@@ -76,15 +76,22 @@ export const CustomDrawer: React.FC<CustomDrawerProps> = ({
             </Typography>
             <HoverAnimatedText
               text="POGLEDAJ VIŠE"
-              onClick={() => router.push('/about-me')}
+              onClick={() => {
+                router.push('/about-me');
+                onClose(false);
+              }}
             />
           </Box>
           <ContactInfo />
-          <Box mt={5} />
-          <HoverAnimatedText
-            text="KONTAKT"
-            onClick={() => router.push('/contact')}
-          />
+          <Box mt={5} mb={5}>
+            <HoverAnimatedText
+              text="KONTAKT"
+              onClick={() => {
+                router.push('/contact');
+                onClose(false);
+              }}
+            />
+          </Box>
         </Box>
       </Box>
     </Drawer>

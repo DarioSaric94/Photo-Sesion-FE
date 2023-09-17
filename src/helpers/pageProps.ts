@@ -60,6 +60,12 @@ const pageTexts: Record<string, PageTexts> = {
     text2: `Poklon za važne zvanice koji će vratiti osmijeh na lice svaki put kada 
       je gosti pogledaju i sjećanje na taj dan.`,
   },
+  '/about-me': {
+    detailText: 'UPOZNAJTE ME',
+    pageText: 'O MENI',
+    text1: ``,
+    text2: ``,
+  },
 };
 
 export function getPageTexts(pathname: string): PageTexts {
