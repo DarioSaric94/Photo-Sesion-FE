@@ -1,10 +1,10 @@
-import { UserData } from '@/utils/types';
+import { UserInfo } from '@/utils/types';
 import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import React from 'react';
 
 interface ContactAppsProps {
-  data: UserData;
+  data: UserInfo;
   icon: React.ReactElement;
 }
 
@@ -22,7 +22,7 @@ export const ContactApps: React.FC<ContactAppsProps> = ({ data, icon }) => {
           },
         })}
       </Box>
-      {data?.socialNetworks?.facebookLink && (
+      {data?.facebookLink && (
         <Typography
           ml={1.5}
           mb={0.4}
@@ -34,12 +34,12 @@ export const ContactApps: React.FC<ContactAppsProps> = ({ data, icon }) => {
             cursor: 'pointer',
             transition: 'ease-in-out 200ms',
           }}
-          onClick={() => router.push(`${data?.socialNetworks?.facebookLink}`)}
+          onClick={() => router.push(`${data?.facebookLink}`)}
         >
           Facebook
         </Typography>
       )}
-      {data?.socialNetworks?.instagramLink && (
+      {data?.instagramLink && (
         <Typography
           ml={1.5}
           mb={0.4}
@@ -51,26 +51,9 @@ export const ContactApps: React.FC<ContactAppsProps> = ({ data, icon }) => {
             cursor: 'pointer',
             transition: 'ease-in-out 200ms',
           }}
-          onClick={() => router.push(`${data?.socialNetworks?.instagramLink}`)}
+          onClick={() => router.push(`${data?.instagramLink}`)}
         >
           Instagram
-        </Typography>
-      )}
-      {data?.socialNetworks?.viberLink && (
-        <Typography
-          ml={1.5}
-          mb={0.4}
-          fontSize={14}
-          sx={{
-            '&:hover': {
-              color: 'primary.light',
-            },
-            cursor: 'pointer',
-            transition: 'ease-in-out 200ms',
-          }}
-          onClick={() => router.push(`${data?.socialNetworks?.viberLink}`)}
-        >
-          Viber
         </Typography>
       )}
     </Box>

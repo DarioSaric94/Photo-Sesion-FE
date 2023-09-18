@@ -1,71 +1,51 @@
 const baseURL = 'http://localhost:3000/';
 
-const getHeaders = () => {
+const getHeaders = (isFormData = false) => {
   const token = localStorage.getItem('ACCESS_TOKEN') || null;
-  return {
+  const headers: Record<string, string> = {
     Accept: 'application/json',
-    'Content-Type': 'application/json',
     Authorization: 'Bearer ' + token,
   };
+  if (!isFormData) {
+    headers['Content-Type'] = 'application/json';
+  }
+
+  return headers;
 };
 
-export const POST = async (
+const performRequest = async (
+  method: string,
   route: string,
-  formData: any | undefined = undefined
+  data: BodyInit | null | undefined
 ) => {
-  const headers = getHeaders();
+  const isFormData = data instanceof FormData;
+  const headers = getHeaders(isFormData);
+
   try {
     const response = await fetch(baseURL + route, {
-      method: 'POST',
+      method,
       headers,
-      body: JSON.stringify(formData),
+      body: isFormData ? data : JSON.stringify(data),
     });
     const json = await response.json();
     return json;
   } catch (error) {
     throw error;
   }
+};
+
+export const POST = async (route: string, data: any = undefined) => {
+  return performRequest('POST', route, data);
 };
 
 export const GET = async (route: string) => {
-  const headers = getHeaders();
-  try {
-    const response = await fetch(baseURL + route, {
-      method: 'GET',
-      headers,
-    });
-    const json = await response.json();
-    return json;
-  } catch (error) {
-    throw error;
-  }
+  return performRequest('GET', route, undefined);
 };
 
-export const PATCH = async (route: string, formData: any | null = null) => {
-  const headers = getHeaders();
-  try {
-    const response = await fetch(baseURL + route, {
-      method: 'PATCH',
-      headers,
-      body: JSON.stringify(formData),
-    });
-    const json = await response.json();
-    return json;
-  } catch (error) {
-    throw error;
-  }
+export const PATCH = async (route: string, data = undefined) => {
+  return performRequest('PATCH', route, data);
 };
 
 export const DELETE = async (route: string) => {
-  const headers = getHeaders();
-  try {
-    const response = await fetch(baseURL + route, {
-      method: 'DELETE',
-      headers,
-    });
-    const json = await response.json();
-    return json;
-  } catch (error) {
-    throw error;
-  }
+  return performRequest('DELETE', route, undefined);
 };

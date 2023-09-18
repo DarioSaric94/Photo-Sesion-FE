@@ -1,19 +1,18 @@
-import { Card } from '@/components/shared/card';
 import { CustomButton } from '@/components/shared/customButton';
 import { LinkText } from '@/components/shared/linkText';
-import { Box, Typography, TextField } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { resetPassword } from '@/utils/auth.api';
-import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { Container } from '@/components/layout/container';
+import { Input } from '@/components/shared/input';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 export default function ResetPassword() {
-  const [email, setEmail] = useState<string>('');
+  const { handleSubmit, register } = useForm();
   const router = useRouter();
 
-  const resetPasswordHandler = async () => {
-    const response = await resetPassword({ email });
+  const resetPasswordHandler: SubmitHandler<FieldValues> = async (data) => {
+    const response = await resetPassword(data);
     if (response?.statusCode === 200) {
       toast.success(response?.message);
     } else {
@@ -21,38 +20,39 @@ export default function ResetPassword() {
     }
   };
   return (
-    <Container height="80vh">
-      <Box display="flex" justifyContent="center" mt={10}>
-        <Card maxWidth={350} width="100%">
-          <Box p={1}>
-            <Typography
-              fontSize={28}
-              fontWeight="bold"
-              textAlign="center"
-              mb={5}
-            >
-              Reset your password
-            </Typography>
-            <TextField
-              InputLabelProps={{ shrink: false }}
-              placeholder="Email address"
-              variant="outlined"
-              onChange={(e) => setEmail(e.target.value)}
-              fullWidth
-            />
-            <LinkText
-              link="Back to login"
-              onClick={() => router.push('/auth/login')}
-            />
-            <CustomButton
-              variant="contained"
-              width="100%"
-              text="Send instructions"
-              onClick={resetPasswordHandler}
-            />
-          </Box>
-        </Card>
+    <Box
+      height="100vh"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Box p={5} width="100%" maxWidth={330}>
+        <Typography
+          fontSize={30}
+          fontWeight="bold"
+          textAlign="center"
+          mb={3}
+          color="primary.main"
+        >
+          Forgot Password?
+        </Typography>
+        <Input
+          label="Email address"
+          type="email"
+          name="email"
+          register={register}
+        />
+        <LinkText
+          link="Back to login"
+          onClick={() => router.push('/auth/login')}
+        />
+        <CustomButton
+          fullWidth
+          variant="outlined"
+          text="SEND INSTRUCTIONS"
+          onClick={handleSubmit(resetPasswordHandler)}
+        />
       </Box>
-    </Container>
+    </Box>
   );
 }

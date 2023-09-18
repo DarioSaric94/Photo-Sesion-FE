@@ -1,7 +1,8 @@
+import { MyProfile } from '@/components/admin.component/myProfile';
 import { Footer } from '@/components/layout/footer';
 import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 export default function Home() {
   const [overlayBg, setOverlayBg] = useState<boolean>(false);
@@ -66,6 +67,7 @@ export default function Home() {
         sx={{ transition: ' 0.3s ease' }}
         bgcolor={overlayBg ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.4)'}
       />
+      <MyProfile />
     </Box>
   );
 }

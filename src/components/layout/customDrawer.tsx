@@ -2,6 +2,8 @@ import { Avatar, Box, Drawer, Typography } from '@mui/material';
 import { HoverAnimatedText } from '../shared/hoverAnimatedText';
 import { useRouter } from 'next/router';
 import { ContactInfo } from '../contact/contactInfo';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 interface CustomDrawerProps {
   openDrawer: boolean;
@@ -12,6 +14,8 @@ export const CustomDrawer: React.FC<CustomDrawerProps> = ({
   openDrawer,
   onClose,
 }) => {
+  const data = useSelector((state: RootState) => state?.userData?.userData);
+
   const router = useRouter();
   return (
     <Drawer
@@ -57,7 +61,11 @@ export const CustomDrawer: React.FC<CustomDrawerProps> = ({
           p={5}
         >
           <Box display="flex" alignItems="center" mb={4}>
-            <Avatar sx={{ width: 150, height: 150, fontSize: 60 }}>H</Avatar>
+            <Avatar
+              sx={{ width: 150, height: 150, fontSize: 60 }}
+              src={data?.image}
+              alt={data?.email}
+            />
             <Typography
               ml={2}
               textTransform="uppercase"
@@ -66,7 +74,9 @@ export const CustomDrawer: React.FC<CustomDrawerProps> = ({
               variant="h5"
               color="primary.light"
             >
-              Stefan Stevic
+              {data?.name || data?.lastName
+                ? `${data?.name} ${data?.lastName}`
+                : 'Korisnik'}
             </Typography>
           </Box>
           <Box mb={10}>

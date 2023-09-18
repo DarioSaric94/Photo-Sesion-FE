@@ -4,7 +4,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface UserDataWithoutToken {
   createdAt: string;
   email: string;
-  favoriteCourses: any[];
   id: number;
   role: number;
 }
@@ -55,22 +54,8 @@ const authSlice = createSlice({
       state.userData = null;
       localStorage.clear();
     },
-    likeDislikeCourse(state, action) {
-      const courseId = action.payload;
-
-      if (state.userData?.favoriteCourses) {
-        const existingIndex = state.userData.favoriteCourses.findIndex(
-          (course) => course.courseId === courseId
-        );
-        if (existingIndex !== -1) {
-          state.userData.favoriteCourses.splice(existingIndex, 1);
-        } else {
-          state.userData.favoriteCourses.push({ courseId });
-        }
-      }
-    },
   },
 });
 
-export const { login, logOut, likeDislikeCourse } = authSlice.actions;
+export const { login, logOut } = authSlice.actions;
 export default authSlice.reducer;

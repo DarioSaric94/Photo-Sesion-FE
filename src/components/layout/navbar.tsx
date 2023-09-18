@@ -7,6 +7,10 @@ import { CustomDrawer } from './customDrawer';
 import { Logo } from './logo';
 import { SmallScreenNavbar } from './smallScreenNavbar';
 import { SmallScreenDrawer } from './smallScreenDrawer';
+import { useEffect } from 'react';
+import { getUserData } from '@/utils/userData.api';
+import { setUserData } from '@/store/userData.slice';
+import { useDispatch } from 'react-redux';
 
 export const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
@@ -15,6 +19,14 @@ export const Navbar = () => {
   const [isHovered, setIsHovered] = useState(false);
   const router = useRouter();
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const userData = async () => {
+      const response: any = await getUserData();
+      dispatch(setUserData(response));
+    };
+    userData();
+  });
   return (
     <>
       <Box

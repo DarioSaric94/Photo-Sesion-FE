@@ -12,9 +12,11 @@ export const LinkText: React.FC<LinkTextProps> = ({ link, onClick }) => {
         onClick={onClick}
         variant="body2"
         fontWeight="bold"
+        fontSize={10}
+        color="secondary.main"
         sx={{
           '&:hover': {
-            color: 'secondary.light',
+            color: 'primary.light',
           },
           cursor: 'pointer',
 

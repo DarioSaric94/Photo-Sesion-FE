@@ -5,25 +5,12 @@ import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LanOutlinedIcon from '@mui/icons-material/LanOutlined';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 export const ContactInfo = () => {
-  const data = {
-    id: 2,
-    createdAt: 'date',
-    token: 'asdasd',
-    role: 1,
-    city: 'Brčko',
-    country: 'BiH',
-    domesticNumber: '065/264-898',
-    iternationalCountry: 'EU',
-    iternationalNumber: '099/5961-079',
-    email: 'info@fotomiskic.com',
-    socialNetworks: {
-      facebookLink: 'Face',
-      instagramLink: 'asdasd',
-      viberLink: '',
-    },
-  };
+  const data = useSelector((state: RootState) => state?.userData?.userData);
+  console.log(data);
   return (
     <Box color="primary.main">
       <Typography fontWeight="bold" fontSize={12}>
@@ -32,10 +19,12 @@ export const ContactInfo = () => {
       <Typography fontWeight="bold" fontSize={22} color="primary.light">
         PRONAĐITE NAS
       </Typography>
-      <InfoIcon
-        text={`${data?.city}, ${data?.country}`}
-        icon={<FmdGoodOutlinedIcon />}
-      />
+      {data?.country && (
+        <InfoIcon
+          text={`${data?.city}, ${data?.country}`}
+          icon={<FmdGoodOutlinedIcon />}
+        />
+      )}
       {data?.domesticNumber && (
         <InfoIcon
           text={`${data?.country}, ${data?.domesticNumber}`}
@@ -48,8 +37,12 @@ export const ContactInfo = () => {
           icon={<LocalPhoneOutlinedIcon />}
         />
       )}
-      <InfoIcon text={data?.email} icon={<EmailOutlinedIcon />} />
-      <ContactApps data={data} icon={<LanOutlinedIcon />} />
+      {data?.email && (
+        <InfoIcon text={data?.email} icon={<EmailOutlinedIcon />} />
+      )}
+      {data?.facebookLink || data?.instagramLink ? (
+        <ContactApps data={data} icon={<LanOutlinedIcon />} />
+      ) : null}
     </Box>
   );
 };

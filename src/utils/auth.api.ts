@@ -2,46 +2,27 @@ import { GET, POST } from './fetch';
 import { toast } from 'react-toastify';
 import { LoginUserRo, ResponseObj } from './types';
 
-interface RegisterProps {
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
-
-export const register = async ({
-  email,
-  password,
-}: RegisterProps): Promise<LoginUserRo | undefined> => {
-  try {
-    return await POST('auth/register', { email, password });
-  } catch (error) {
-    toast.error('Something went wrong');
-  }
-};
-
 interface SigninProps {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
 }
 
-export const signIn = async ({
-  email,
-  password,
-}: SigninProps): Promise<LoginUserRo | undefined> => {
+export const signIn = async (data: SigninProps): Promise<LoginUserRo> => {
   try {
-    return await POST('auth/login', { email, password });
+    return await POST('auth/login', data);
   } catch (error) {
     toast.error('Something went wrong');
+    throw error;
   }
 };
 
 interface ResetPasswordProps {
-  email: string;
+  email?: string;
 }
 
-export const resetPassword = async ({
-  email,
-}: ResetPasswordProps): Promise<ResponseObj | undefined> => {
+export const resetPassword = async (
+  email: ResetPasswordProps
+): Promise<ResponseObj | undefined> => {
   try {
     return await POST('auth/reset-password', { email });
   } catch (error) {

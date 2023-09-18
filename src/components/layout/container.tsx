@@ -5,6 +5,7 @@ import { ScrollToTop } from './scrollToTop';
 import { useRouter } from 'next/router';
 import { getPageTexts } from '@/helpers/pageProps';
 import { Footer } from './footer';
+import { MyProfile } from '../admin.component/myProfile';
 
 interface ContainerProps {
   children: any;
@@ -91,6 +92,7 @@ export const Container: React.FC<ContainerProps> = ({ children }) => {
       </Grid>
       <ScrollToTop containerRef={containerRef} />
       <Footer containerRef={containerRef} />
+      <MyProfile />
     </Grid>
   );
 };

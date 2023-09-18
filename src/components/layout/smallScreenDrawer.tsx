@@ -151,7 +151,10 @@ export const SmallScreenDrawer: React.FC<SmallScreenDrawerProps> = ({
                     <Typography
                       fontWeight="bold"
                       color="secondary.main"
-                      onClick={() => router.push('/wooden-boxes')}
+                      onClick={() => {
+                        router.push('/wooden-boxes');
+                        onClose(false);
+                      }}
                       sx={{
                         cursor: 'pointer',
                         transition: 'color 0.3s ease-in-out',
@@ -165,7 +168,10 @@ export const SmallScreenDrawer: React.FC<SmallScreenDrawerProps> = ({
                     <Typography
                       fontWeight="bold"
                       color="secondary.main"
-                      onClick={() => router.push('/photo-card')}
+                      onClick={() => {
+                        router.push('/photo-card');
+                        onClose(false);
+                      }}
                       sx={{
                         cursor: 'pointer',
                         transition: 'color 0.3s ease-in-out',
