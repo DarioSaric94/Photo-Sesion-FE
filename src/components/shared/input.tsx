@@ -4,7 +4,7 @@ interface InputProps {
   multiline?: boolean;
   rows?: number;
   label: string;
-  name?: string;
+  name: string;
   register: any;
   defaultValue?: string | number;
   variant?: TextFieldVariants;
@@ -28,7 +28,7 @@ export const Input: React.FC<InputProps> = ({
   return (
     <TextField
       {...register(name, { required: required })}
-      error={errors && name && errors[name] ? 'true' : undefined}
+      error={errors && errors[name] && true}
       defaultValue={defaultValue}
       label={label}
       multiline={multiline}

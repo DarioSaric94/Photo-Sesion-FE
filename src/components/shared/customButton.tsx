@@ -19,6 +19,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
       onClick={onClick}
       variant={variant}
       sx={{
+        borderRadius: 0,
         '&:hover': {
           borderColor: 'primary.light',
           borderWidth: 2,

@@ -4,7 +4,7 @@ body {
   padding: 0px;
 
 }
-::-webkit-scrollbar {
+.container::-webkit-scrollbar {
   display: none;
 }
 
@@ -19,6 +19,15 @@ body {
 .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
   background: transparent;
   box-shadow: 0 0 0 0 
+}
+
+.image-preview {
+  object-fit: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+
 }
 
 .image-portfolio {

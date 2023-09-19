@@ -21,6 +21,7 @@ export const Container: React.FC<ContainerProps> = ({ children }) => {
       <SideNav detailText={detailText} pageText={pageText} />
       <Grid item xs={12} lg={8}>
         <Grid
+          className="container"
           container
           ref={containerRef}
           maxWidth={1280}
