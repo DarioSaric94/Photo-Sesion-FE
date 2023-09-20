@@ -1,14 +1,9 @@
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
-interface MapItem {
-  value: string | number;
-  text: string;
-}
-
 interface CustomSelectProps {
-  value: string | number | null;
+  value?: string | number | null;
   onChange: (value: string | number) => void;
-  map: MapItem[];
+  map?: any;
   label: string;
 }
 
@@ -60,15 +55,15 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
         }}
         labelId="demo-simple-select-label"
         id="demo-simple-select"
-        value={value}
+        defaultValue={value}
         className="custom-select-scrollbar"
         label={label}
         onChange={(e) => onChange(e.target.value as string | number)}
       >
-        {map.map((item) => (
+        {map?.map((item: any) => (
           <MenuItem
-            key={item.value}
-            value={item.value}
+            key={item?.id}
+            value={item?.id}
             sx={{
               color: 'primary.light',
               bgcolor: 'primary.contrastText',
@@ -86,7 +81,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
               },
             }}
           >
-            {item.text}
+            {item?.participants}
           </MenuItem>
         ))}
       </Select>

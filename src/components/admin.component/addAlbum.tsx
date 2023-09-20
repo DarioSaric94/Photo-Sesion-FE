@@ -8,7 +8,11 @@ import { ReactImageDropzone } from './reactImageDropzone';
 import { postAlbum } from '@/utils/album.api';
 import { toast } from 'react-toastify';
 
-export const AddAlbum = ({}) => {
+interface AddAlbumProps {
+  onPostSuccess: (bool: boolean) => void;
+}
+
+export const AddAlbum: React.FC<AddAlbumProps> = ({ onPostSuccess }) => {
   const {
     handleSubmit,
     register,
@@ -35,6 +39,9 @@ export const AddAlbum = ({}) => {
     } else if (imageFiles.length <= 0) {
       toast.warning('Morate postaviti bar jednu fotografiju');
       return;
+    } else if (imageFiles.length >= 200) {
+      toast.warning('Vaš paket podrzava maksimalno 200 fotografija po albumu');
+      return;
     }
 
     const formData = new FormData();
@@ -42,13 +49,14 @@ export const AddAlbum = ({}) => {
     formData.append('albumName', data.albumName);
     formData.append('participants', data.participants);
     formData.append('albumPassword', data.albumPassword);
-    const concatenatedImages = new Blob(imageFiles, { type: 'image/*' });
 
-    formData.append('images', concatenatedImages, 'images.zip');
-
-    const response: any = await postAlbum({ formData });
+    imageFiles.forEach((image) => {
+      formData.append('image', image);
+    });
+    const response: any = await postAlbum(formData);
     if (response?.statusCode === 201) {
       handleClearInputData();
+      onPostSuccess(response);
       toast.success('Album Postavljen Uspješno');
     } else {
       toast.error(response?.error);

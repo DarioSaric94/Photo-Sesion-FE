@@ -8,17 +8,20 @@ import { RootState } from '@/store/store';
 import { useEffect, useState } from 'react';
 import { getYoutubeLinks } from '@/utils/youtubeLinks.api';
 import { YoutubeLinksData } from '@/utils/types';
+import { getAlbums } from '@/utils/album.api';
 
 export default function Portfolio() {
   const admin = useSelector((state: RootState) => state?.auth?.userData?.role);
   const [youtubeLinksData, setYoutubeLinksData] =
     useState<YoutubeLinksData | null>(null);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [albumsData, setAlbumsData] = useState<any>([]);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
   useEffect(() => {
     const handleGetYoutubeLinks = async () => {
       const response: any = await getYoutubeLinks();
-      setYoutubeLinksData(response);
+      setYoutubeLinksData(response?.youtubeLinks);
+      setAlbumsData(response);
     };
     handleGetYoutubeLinks();
   }, [isSuccess]);
@@ -27,6 +30,7 @@ export default function Portfolio() {
     <Container>
       {admin === 1 && (
         <AddYoutubeLink
+          albumsData={albumsData?.albumsData}
           data={youtubeLinksData}
           onPostSuccessChange={setIsSuccess}
         />
@@ -41,15 +45,11 @@ export default function Portfolio() {
         <YoutubeVideo src={youtubeLinksData?.youtubeLink3} />
       )}
       <Grid container spacing={3} mb={20} mt={0}>
-        <ListImageItem src="/images/cat.jpg" />
-        <ListImageItem src="/images/cat.jpg" />
-        <ListImageItem src="/images/cat.jpg" />
-        <ListImageItem src="/images/djedmraz.jpg" />
-        <ListImageItem src="/images/djedmraz.jpg" />
-        <ListImageItem src="/images/djedmraz.jpg" />
-        <ListImageItem src="/images/cat.jpg" />
-        <ListImageItem src="/images/cat.jpg" />
-        <ListImageItem src="/images/cat.jpg" />
+        {albumsData?.album?.images?.map(
+          (image: { id: number; image: string }) => {
+            return <ListImageItem key={image?.id} src={image?.image} />;
+          }
+        )}
       </Grid>
     </Container>
   );

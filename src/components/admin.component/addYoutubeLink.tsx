@@ -20,11 +20,13 @@ import { YoutubeLinksData } from '@/utils/types';
 interface AddYoutubeLinkProps {
   onPostSuccessChange: (bool: boolean) => void;
   data?: YoutubeLinksData | null;
+  albumsData?: any;
 }
 
 export const AddYoutubeLink: React.FC<AddYoutubeLinkProps> = ({
   onPostSuccessChange,
   data,
+  albumsData,
 }) => {
   const { handleSubmit, register } = useForm();
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -34,11 +36,11 @@ export const AddYoutubeLink: React.FC<AddYoutubeLinkProps> = ({
     const response: any = await postYoutubeLinks({ ...data, albumId: album });
     if (response?.statusCode === 200) {
       toast.success('Podatci Uspješno Promjenjeni');
+      onPostSuccessChange(response);
       setOpenModal(false);
     } else {
       toast.error(response?.error);
     }
-    onPostSuccessChange(response);
   };
 
   return (
@@ -91,15 +93,9 @@ export const AddYoutubeLink: React.FC<AddYoutubeLinkProps> = ({
           <Grid item xs={12}>
             <CustomSelect
               label="Izaberite Album"
-              value={album}
+              value={data?.albumId}
               onChange={setAlbum}
-              map={[
-                { value: 1, text: 'asd' },
-                { value: 1, text: 'asd' },
-                { value: 1, text: 'asd' },
-                { value: 1, text: 'asd' },
-                { value: 1, text: 'asd' },
-              ]}
+              map={albumsData}
             />
           </Grid>
           <Grid item xs={12} display="flex">

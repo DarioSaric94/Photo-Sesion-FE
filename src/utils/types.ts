@@ -30,5 +30,5 @@ export interface YoutubeLinksData {
   youtubeLink1?: string;
   youtubeLink2?: string;
   youtubeLink3?: string;
-  album?: any;
+  albumId?: number;
 }

@@ -2,6 +2,7 @@ import { GET, POST } from './fetch';
 import { toast } from 'react-toastify';
 import { LoginUserRo } from './types';
 const ALBUM = 'album/';
+const DELETE = 'delete/';
 
 interface PostAlbumProps {
   albumName: string;
@@ -10,10 +11,9 @@ interface PostAlbumProps {
   images: File[];
 }
 
-export const postAlbum = async ({
-  formData,
-}: PostAlbumProps): Promise<LoginUserRo | undefined> => {
-  console.log(formData);
+export const postAlbum = async (
+  formData: any
+): Promise<LoginUserRo | undefined> => {
   try {
     return await POST(ALBUM, formData);
   } catch (error) {
@@ -25,4 +25,14 @@ export const getAlbums = async (): Promise<LoginUserRo | undefined> => {
   try {
     return await GET(ALBUM);
   } catch (error) {}
+};
+
+export const deleteAlbum = async (
+  data: any
+): Promise<LoginUserRo | undefined> => {
+  try {
+    return await POST(`${ALBUM}${DELETE}`, data);
+  } catch (error) {
+    toast.error('Something went wrong');
+  }
 };

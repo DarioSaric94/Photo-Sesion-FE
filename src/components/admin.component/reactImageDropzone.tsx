@@ -100,6 +100,30 @@ export const ReactImageDropzone: React.FC<ReactImageDropzoneProps> = ({
         </Grid>
         <Grid
           item
+          xs={12}
+          md={6}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+        >
+          <Typography color="primary.main" fontWeight="bold">
+            Ukupno Selektovanih Fotografija:
+            <Typography
+              component="span"
+              ml={1}
+              fontWeight="bold"
+              color="primary.light"
+            >
+              {files.length}
+            </Typography>
+          </Typography>
+          <Typography color="primary.main" fontWeight="bold">
+            Maksimalno Dozvoljeno za vaš paket 200
+          </Typography>
+        </Grid>
+        <Grid
+          item
           mt={2}
           xs={12}
           sx={{ overflow: 'auto', maxHeight: { xs: '100%', md: '50vh' } }}

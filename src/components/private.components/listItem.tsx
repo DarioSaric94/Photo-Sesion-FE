@@ -1,32 +1,37 @@
 import { Grid, Box, Typography } from '@mui/material';
+import { DeleteIcon } from '../admin.component/deleteIcon';
 
-export const ListItem = () => {
+interface ListItemProps {
+  album: any;
+  onDelete: (album: any) => void;
+}
+
+export const ListItem: React.FC<ListItemProps> = ({ album, onDelete }) => {
   return (
-    <Grid item xs={12} md={6} lg={4} mb={2}>
-      <Box sx={{ aspectRatio: 1 / 1 }}>
-        <Box overflow="hidden">
-          <img src="/images/djedmraz.jpg" className="image-portfolio" />
-        </Box>
-        <Box mt={2}>
-          <Typography
-            fontWeight="bold"
-            fontSize={12}
-            color="primary.main"
-            textTransform="uppercase"
-          >
-            Vjencanje
-          </Typography>
-          <Typography
-            fontWeight="bolder"
-            color="primary.light"
-            lineHeight={1.4}
-            textTransform="uppercase"
-            fontSize={22}
-          >
-            Ljubica i Slobodan
-          </Typography>
-        </Box>
+    <Grid item xs={12} md={6} lg={4} mb={2} position="relative">
+      <Box overflow="hidden" sx={{ aspectRatio: 1 / 1.05 }}>
+        <img src={album?.images[0]?.image} className="image-portfolio" />
       </Box>
+      <Box mt={2}>
+        <Typography
+          fontWeight="bold"
+          fontSize={12}
+          color="primary.main"
+          textTransform="uppercase"
+        >
+          {album?.albumName}
+        </Typography>
+        <Typography
+          fontWeight="bolder"
+          color="primary.light"
+          lineHeight={1.1}
+          textTransform="uppercase"
+          fontSize={24}
+        >
+          {album?.participants}
+        </Typography>
+      </Box>
+      <DeleteIcon onClick={() => onDelete(album)} />
     </Grid>
   );
 };
