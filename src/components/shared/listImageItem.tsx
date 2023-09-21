@@ -9,6 +9,7 @@ interface ListImageItemProps {
 export const ListImageItem: React.FC<ListImageItemProps> = ({ src }) => {
   const [aspectRatio, setAspectRatio] = useState(1 / 1);
   const { pathname } = useRouter();
+  console.log(src);
 
   useEffect(() => {
     const img = new Image();
@@ -24,11 +25,14 @@ export const ListImageItem: React.FC<ListImageItemProps> = ({ src }) => {
       }
     };
   }, [src]);
+
   return (
-    <Grid item xs={12} md={6} lg={4}>
-      <Box overflow="hidden" sx={{ aspectRatio }}>
-        <img src={src} className="image-portfolio" />
-      </Box>
-    </Grid>
+    <>
+      <Grid item xs={12} md={6} lg={4}>
+        <Box overflow="hidden" sx={{ aspectRatio }}>
+          <img src={src} className="image-portfolio" />
+        </Box>
+      </Grid>
+    </>
   );
 };

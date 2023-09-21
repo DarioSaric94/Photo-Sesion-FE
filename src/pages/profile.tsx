@@ -2,17 +2,18 @@ import { AddImage } from '@/components/admin.component/addImage';
 import { CustomButton } from '@/components/shared/customButton';
 import { Input } from '@/components/shared/input';
 import { Box, Grid, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { postUserData } from '@/utils/userData.api';
 import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 export default function Profile() {
   const { handleSubmit, register } = useForm();
-  const data = useSelector((state: any) => state?.userData?.userData);
-  const [selectedImageFile, setSelectedImageFile] = useState<null | File>();
+  const data = useSelector((state: RootState) => state?.userData?.userData);
+  const [selectedImageFile, setSelectedImageFile] = useState<null | File>(null);
   const router = useRouter();
   const handleImageChange = (file: File | null) => {
     setSelectedImageFile(file);
@@ -45,15 +46,16 @@ export default function Profile() {
     }
 
     try {
-      const response: any = await postUserData({ formData });
+      const response: any = await postUserData(formData);
       if (response?.statusCode === 200) {
+        console.log(response);
         toast.success('Podatci Ažurirani');
         router.push('/');
       } else {
         toast.warning(response?.message);
       }
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   };
   return (

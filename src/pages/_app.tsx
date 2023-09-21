@@ -9,6 +9,7 @@ import '../static/styles/index.css';
 import { Navbar } from '@/components/layout/navbar';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isClient, setIsClient] = useState<boolean>(false);
@@ -18,6 +19,10 @@ export default function App({ Component, pageProps }: AppProps) {
       setIsClient(true);
     }
   }, []);
+
+  const gradientStyle = {
+    background: `linear-gradient(90deg, ${theme.palette.primary.contrastText} 40%, ${theme.palette.primary.dark} 73%)`,
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -29,7 +34,11 @@ export default function App({ Component, pageProps }: AppProps) {
           />
         </Head>
         <Navbar />
-        {isClient && <Component {...pageProps} />}
+        {isClient && (
+          <Box bgcolor={gradientStyle}>
+            <Component {...pageProps} />
+          </Box>
+        )}
       </Provider>
       <ToastContainer
         position="top-right"

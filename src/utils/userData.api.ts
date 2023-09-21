@@ -1,14 +1,10 @@
 import { GET, POST } from './fetch';
 import { toast } from 'react-toastify';
-import { LoginUserRo, ResponseObj } from './types';
+import { UserInfoRo } from './types';
 
-interface postUserDataProps {
-  formData: any;
-}
-
-export const postUserData = async ({
-  formData,
-}: postUserDataProps): Promise<LoginUserRo | undefined> => {
+export const postUserData = async (
+  formData: FormData
+): Promise<UserInfoRo | undefined> => {
   try {
     return await POST('user-data', formData);
   } catch (error) {
@@ -16,7 +12,7 @@ export const postUserData = async ({
   }
 };
 
-export const getUserData = async (): Promise<LoginUserRo | undefined> => {
+export const getUserData = async (): Promise<UserInfoRo | undefined> => {
   try {
     return await GET('user-data');
   } catch (error) {}

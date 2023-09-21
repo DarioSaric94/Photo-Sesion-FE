@@ -20,7 +20,7 @@ export const AddAlbum: React.FC<AddAlbumProps> = ({ onPostSuccess }) => {
     reset,
   } = useForm();
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [imageFiles, setImageFiles] = useState<any[]>([]);
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
 
   const updateImageFiles = (newFiles: any[]) => {
     setImageFiles(newFiles);
@@ -33,7 +33,7 @@ export const AddAlbum: React.FC<AddAlbumProps> = ({ onPostSuccess }) => {
     } else if (data.participants === '') {
       toast.warning('Ime vlasnika albuma ne smije biti krace od 3 karaktera!');
       return;
-    } else if (data.albumPassword <= 7) {
+    } else if (data.albumPassword.length <= 7) {
       toast.warning('Lozinka ne smije biti kraca od 8 karaktera!');
       return;
     } else if (imageFiles.length <= 0) {
@@ -49,6 +49,8 @@ export const AddAlbum: React.FC<AddAlbumProps> = ({ onPostSuccess }) => {
     formData.append('albumName', data.albumName);
     formData.append('participants', data.participants);
     formData.append('albumPassword', data.albumPassword);
+    formData.append('trailerVideo', data.trailerVideo || '');
+    formData.append('mainVideo', data.mainVideo || '');
 
     imageFiles.forEach((image) => {
       formData.append('image', image);
@@ -137,7 +139,27 @@ export const AddAlbum: React.FC<AddAlbumProps> = ({ onPostSuccess }) => {
               errors={errors}
             />
           </Grid>
-
+          <Grid item xs={12}>
+            <Typography textAlign="start" color="primary.main">
+              Dodajte Video:
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Input
+              label="Trailer Video"
+              name="trailerVideo"
+              register={register}
+              errors={errors}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Input
+              label="Glavni Video"
+              name="mainVideo"
+              register={register}
+              errors={errors}
+            />
+          </Grid>
           <Grid item xs={12}>
             <Typography textAlign="start" color="primary.main">
               Dodajte Fotografije:

@@ -2,21 +2,23 @@ import { Box, Grid, Typography } from '@mui/material';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import ClearIcon from '@mui/icons-material/Clear';
+import { ExtendedFile } from '@/utils/types';
 
 interface ReactImageDropzoneProps {
-  updateFiles: (file: any) => void;
+  updateFiles: (file: File[]) => void;
 }
 
 export const ReactImageDropzone: React.FC<ReactImageDropzoneProps> = ({
   updateFiles,
 }) => {
-  const [files, setFiles] = useState<any[]>([]);
+  const [files, setFiles] = useState<ExtendedFile[]>([]);
   const onDrop = useCallback(
-    (acceptedFiles: any) => {
+    (acceptedFiles: File[]) => {
+      console.log(acceptedFiles);
       if (acceptedFiles?.length) {
-        setFiles((previousFiles: any) => [
+        setFiles((previousFiles: ExtendedFile[]) => [
           ...previousFiles,
-          ...acceptedFiles.map((file: any) =>
+          ...acceptedFiles.map((file: File) =>
             Object.assign(file, {
               preview: URL.createObjectURL(file),
             })
@@ -34,7 +36,7 @@ export const ReactImageDropzone: React.FC<ReactImageDropzoneProps> = ({
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const removeImageHandler = (name: string) => {
-    setFiles((files: any) => {
+    setFiles((files: ExtendedFile[]) => {
       const updatedFiles = files.filter((file: any) => file.name !== name);
       const removedFile = files.find((file: any) => file.name === name);
       if (removedFile) {

@@ -7,14 +7,15 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { useEffect, useState } from 'react';
 import { getYoutubeLinks } from '@/utils/youtubeLinks.api';
-import { YoutubeLinksData } from '@/utils/types';
 import { getAlbums } from '@/utils/album.api';
+import { YoutubeLinks, YoutubeLinksRo } from '@/utils/types';
 
 export default function Portfolio() {
   const admin = useSelector((state: RootState) => state?.auth?.userData?.role);
-  const [youtubeLinksData, setYoutubeLinksData] =
-    useState<YoutubeLinksData | null>(null);
-  const [albumsData, setAlbumsData] = useState<any>([]);
+  const [youtubeLinksData, setYoutubeLinksData] = useState<YoutubeLinks | null>(
+    null
+  );
+  const [albumsData, setAlbumsData] = useState<YoutubeLinksRo | null>(null);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export default function Portfolio() {
     <Container>
       {admin === 1 && (
         <AddYoutubeLink
-          albumsData={albumsData?.albumsData}
+          albumData={albumsData?.albumsData}
           data={youtubeLinksData}
           onPostSuccessChange={setIsSuccess}
         />

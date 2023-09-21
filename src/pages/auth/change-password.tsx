@@ -2,13 +2,10 @@ import { CustomButton } from '@/components/shared/customButton';
 import { LinkText } from '@/components/shared/linkText';
 import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
-
-import { useState } from 'react';
 import { changePassword } from '@/utils/auth.api';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { login } from '@/store/auth.slice';
-import { Container } from '@/components/layout/container';
 import { Input } from '@/components/shared/input';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 

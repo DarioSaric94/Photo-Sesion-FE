@@ -6,6 +6,7 @@ import { CustomButton } from '@/components/shared/customButton';
 import { Input } from '@/components/shared/input';
 import { RootState } from '@/store/store';
 import { deleteAlbum, getAlbums } from '@/utils/album.api';
+import { AlbumSesion } from '@/utils/types';
 import { Box, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
@@ -17,21 +18,21 @@ export default function Private() {
     (state: RootState) => state?.auth?.userData?.role
   );
   const { handleSubmit, register, reset } = useForm();
-  const [albumsData, setAlbumsData] = useState<any>([]);
+  const [albumsData, setAlbumsData] = useState<AlbumSesion[]>([]);
   const [isSuccess, setIsSuccess] = useState(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [selectedAlbum, setSelectedAlbum] = useState<null | any>(null);
-
+  const [selectedAlbum, setSelectedAlbum] = useState<AlbumSesion | undefined>(
+    undefined
+  );
   useEffect(() => {
     const getAlbumsData = async () => {
       const response: any = await getAlbums();
-      console.log(response);
       setAlbumsData(response);
     };
     getAlbumsData();
   }, [isSuccess]);
 
-  const handleDelete = (album: any) => {
+  const handleDelete = (album: AlbumSesion) => {
     setSelectedAlbum(album);
     setOpenModal(true);
   };
@@ -40,7 +41,7 @@ export default function Private() {
     password,
   }) => {
     const response: any = await deleteAlbum({
-      albumId: selectedAlbum.id,
+      albumId: selectedAlbum?.id,
       password,
     });
     if (response?.statusCode === 204) {
@@ -49,9 +50,8 @@ export default function Private() {
       setOpenModal(false);
       setIsSuccess(true);
     } else {
-      toast.error(response?.error);
+      toast.error(response?.message);
     }
-    console.log(response);
   };
 
   return (
@@ -62,7 +62,7 @@ export default function Private() {
         </Box>
       )}
       <Grid container spacing={4} mb={20}>
-        {albumsData?.map((album: any) => {
+        {albumsData?.map((album: AlbumSesion) => {
           return (
             <ListItem key={album?.id} album={album} onDelete={handleDelete} />
           );

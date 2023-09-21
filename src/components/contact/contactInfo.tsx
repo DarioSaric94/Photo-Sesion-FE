@@ -10,7 +10,6 @@ import { RootState } from '@/store/store';
 
 export const ContactInfo = () => {
   const data = useSelector((state: RootState) => state?.userData?.userData);
-  console.log(data);
   return (
     <Box color="primary.main">
       <Typography fontWeight="bold" fontSize={12}>

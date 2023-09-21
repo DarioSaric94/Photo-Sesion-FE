@@ -1,8 +1,8 @@
 import { createTheme } from '@mui/material';
 import { darken, lighten } from '@mui/system';
 
-const primaryColor = '#8c8c8d';
-const secondaryColor = '#be0000';
+const primaryColor = '#708090';
+const secondaryColor = '#98FB98';
 
 
 const theme = createTheme({
@@ -10,7 +10,7 @@ const theme = createTheme({
     primary: {
       main: primaryColor,
       light: lighten(primaryColor, 0.9),
-      dark: darken(primaryColor, 1),
+      dark: darken(primaryColor, 0.7),
       contrastText: darken(primaryColor, 0.8)
     },
     secondary: {

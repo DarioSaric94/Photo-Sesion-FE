@@ -16,7 +16,7 @@ export const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const [openSmallScreenDrawer, setOpenSmallScreenDrawer] =
     useState<boolean>(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
   const router = useRouter();
 
   const dispatch = useDispatch();

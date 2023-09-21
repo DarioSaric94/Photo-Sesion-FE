@@ -4,7 +4,7 @@ interface CustomModalProps {
   open: boolean;
   onClose: () => void;
   children: any;
-  label: string | undefined;
+  label?: string;
   maxWidth?: number | string;
   description?: string;
 }

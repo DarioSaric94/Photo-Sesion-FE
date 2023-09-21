@@ -1,16 +1,17 @@
+import { AlbumData } from '@/utils/types';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
-interface CustomSelectProps {
+interface AlbumSelectProps {
   value?: string | number | null;
   onChange: (value: string | number) => void;
-  map?: any;
+  albumData?: AlbumData[];
   label: string;
 }
 
-export const CustomSelect: React.FC<CustomSelectProps> = ({
+export const AlbumSelect: React.FC<AlbumSelectProps> = ({
   value,
   onChange,
-  map,
+  albumData,
   label,
 }) => {
   return (
@@ -60,7 +61,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
         label={label}
         onChange={(e) => onChange(e.target.value as string | number)}
       >
-        {map?.map((item: any) => (
+        {albumData?.map((item: any) => (
           <MenuItem
             key={item?.id}
             value={item?.id}

@@ -1,39 +1,34 @@
-import {
-  Box,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-} from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { CustomButton } from '../shared/customButton';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { CustomModal } from './customModal';
 import { Input } from '../shared/input';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { CustomSelect } from './customSelect';
+import { AlbumSelect } from './albumSelect';
 import { postYoutubeLinks } from '@/utils/youtubeLinks.api';
 import { toast } from 'react-toastify';
-import { YoutubeLinksData } from '@/utils/types';
+import { AlbumData, YoutubeLinks } from '@/utils/types';
 
 interface AddYoutubeLinkProps {
   onPostSuccessChange: (bool: boolean) => void;
-  data?: YoutubeLinksData | null;
-  albumsData?: any;
+  data: YoutubeLinks | null;
+  albumData?: AlbumData[];
 }
 
 export const AddYoutubeLink: React.FC<AddYoutubeLinkProps> = ({
   onPostSuccessChange,
   data,
-  albumsData,
+  albumData,
 }) => {
   const { handleSubmit, register } = useForm();
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [album, setAlbum] = useState<string | number>('');
+  const [album, setAlbum] = useState<string | number>(data?.id || '');
 
   const saveChangesHandler: SubmitHandler<FieldValues> = async (data) => {
-    const response: any = await postYoutubeLinks({ ...data, albumId: album });
+    const response: any = await postYoutubeLinks({
+      ...data,
+      albumId: Number(album),
+    });
     if (response?.statusCode === 200) {
       toast.success('Podatci Uspješno Promjenjeni');
       onPostSuccessChange(response);
@@ -91,11 +86,11 @@ export const AddYoutubeLink: React.FC<AddYoutubeLinkProps> = ({
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <CustomSelect
+            <AlbumSelect
               label="Izaberite Album"
               value={data?.albumId}
               onChange={setAlbum}
-              map={albumsData}
+              albumData={albumData}
             />
           </Grid>
           <Grid item xs={12} display="flex">
