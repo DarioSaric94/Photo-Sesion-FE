@@ -39,6 +39,7 @@ export interface AlbumSesion {
   id: number;
   albumName: string;
   participants: string;
+  albumPath: string;
   albumPassword?: string;
   mainVideo?: string;
   trailerVideo?: string;
@@ -82,4 +83,9 @@ export interface YoutubeLinks {
 
 export interface ExtendedFile extends File {
   preview: string;
+}
+
+export interface FileImagesRo extends ResponseObj {
+  url: string;
+  sessionToken: string;
 }

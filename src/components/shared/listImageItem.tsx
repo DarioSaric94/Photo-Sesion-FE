@@ -9,7 +9,6 @@ interface ListImageItemProps {
 export const ListImageItem: React.FC<ListImageItemProps> = ({ src }) => {
   const [aspectRatio, setAspectRatio] = useState(1 / 1);
   const { pathname } = useRouter();
-  console.log(src);
 
   useEffect(() => {
     const img = new Image();

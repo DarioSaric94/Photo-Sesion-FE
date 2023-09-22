@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3000/';
+export const baseURL = 'http://localhost:3000/';
 
 const getHeaders = (isFormData = false) => {
   const token = localStorage.getItem('ACCESS_TOKEN') || null;

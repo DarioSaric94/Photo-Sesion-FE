@@ -1,3 +1,4 @@
+import { DownloadAlbum } from '@/components/admin.component/downloadAlbum';
 import { YoutubeVideo } from '@/components/portfolio.component/youtubeVideo';
 import { CustomButton } from '@/components/shared/customButton';
 import { Input } from '@/components/shared/input';
@@ -59,7 +60,13 @@ export default function PrivateAlbum() {
     >
       {lockedAlbum || isAdmin === 1 ? (
         <>
-          <Grid item xs={12}>
+          <Grid
+            item
+            xs={12}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+          >
             <Typography
               fontWeight="bold"
               fontSize={36}
@@ -89,6 +96,8 @@ export default function PrivateAlbum() {
                 Lozinka: {albumData?.albumPassword}
               </Typography>
             )}
+            <Box mt={3} />
+            <DownloadAlbum albumData={albumData} />
           </Grid>
           <Grid container spacing={4} mt={3}>
             {albumData?.images?.map((image: any) => {

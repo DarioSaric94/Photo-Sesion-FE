@@ -14,7 +14,6 @@ export const ReactImageDropzone: React.FC<ReactImageDropzoneProps> = ({
   const [files, setFiles] = useState<ExtendedFile[]>([]);
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      console.log(acceptedFiles);
       if (acceptedFiles?.length) {
         setFiles((previousFiles: ExtendedFile[]) => [
           ...previousFiles,
