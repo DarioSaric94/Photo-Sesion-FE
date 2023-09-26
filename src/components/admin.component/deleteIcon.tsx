@@ -9,6 +9,7 @@ export const DeleteIcon: React.FC<DeleteIconProps> = ({ onClick }) => {
   return (
     <Box position="absolute" zIndex={2} top={20} left={20}>
       <ClearIcon
+        data-testid="delete-icon-test"
         color="secondary"
         sx={{
           bgcolor: 'secondary.light',

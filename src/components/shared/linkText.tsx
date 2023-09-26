@@ -9,6 +9,7 @@ export const LinkText: React.FC<LinkTextProps> = ({ link, onClick }) => {
   return (
     <Box display="flex" justifyContent="end" mt={2} mb={2}>
       <Typography
+        data-testid="link-text-test"
         onClick={onClick}
         variant="body2"
         fontWeight="bold"

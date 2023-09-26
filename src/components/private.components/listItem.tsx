@@ -14,6 +14,7 @@ export const ListItem: React.FC<ListItemProps> = ({ album, onDelete }) => {
   const isAdmin = useSelector(
     (state: RootState) => state?.auth?.userData?.role
   );
+
   const router = useRouter();
   return (
     <Grid item xs={12} md={6} lg={4} mb={2} position="relative">
@@ -22,7 +23,11 @@ export const ListItem: React.FC<ListItemProps> = ({ album, onDelete }) => {
         sx={{ aspectRatio: 1 / 1.05 }}
         onClick={() => router.push(`/private/${album?.id}`)}
       >
-        <img src={album?.images[0]?.image} className="image-portfolio" />
+        <img
+          src={album?.images[0]?.image}
+          alt={album?.images[0]?.image}
+          className="image-portfolio"
+        />
       </Box>
       <Box mt={2}>
         <Typography

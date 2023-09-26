@@ -8,6 +8,7 @@ interface SideNavProps {
 export const SideNav: React.FC<SideNavProps> = ({ detailText, pageText }) => {
   return (
     <Grid
+      data-testid="side-nav-test"
       item
       lg={2}
       sx={{ display: { lg: 'flex', xs: 'none' } }}

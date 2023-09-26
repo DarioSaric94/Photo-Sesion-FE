@@ -27,6 +27,7 @@ export const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <TextField
+      data-testid="input-test"
       {...register(name, { required: required })}
       error={errors && errors[name] && true}
       defaultValue={defaultValue}

@@ -11,8 +11,10 @@ export default function ResetPassword() {
   const { handleSubmit, register } = useForm();
   const router = useRouter();
 
-  const resetPasswordHandler: SubmitHandler<FieldValues> = async (data) => {
-    const response = await resetPassword(data);
+  const resetPasswordHandler: SubmitHandler<FieldValues> = async ({
+    email,
+  }) => {
+    const response = await resetPassword(email);
     if (response?.statusCode === 200) {
       toast.success(response?.message);
     } else {

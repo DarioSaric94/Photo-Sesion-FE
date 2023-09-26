@@ -13,6 +13,7 @@ export const HoverAnimatedText: React.FC<HoverAnimatedTextProps> = ({
   return (
     <Box display="flex" justifyContent="end" alignItems="center">
       <Typography
+        data-testid="hover-animated-text-text"
         onClick={onClick}
         textAlign="end"
         fontSize={14}
@@ -32,6 +33,7 @@ export const HoverAnimatedText: React.FC<HoverAnimatedTextProps> = ({
         {text}
       </Typography>
       <ArrowForwardIosTwoToneIcon
+        data-testid="hover-animated-text-icon"
         onClick={onClick}
         sx={{
           fontSize: 16,

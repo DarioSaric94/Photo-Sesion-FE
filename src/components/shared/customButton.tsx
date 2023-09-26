@@ -15,6 +15,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
 }) => {
   return (
     <Button
+      data-testid="custom-button"
       fullWidth={fullWidth}
       onClick={onClick}
       variant={variant}

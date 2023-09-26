@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/index.js", "src/pages/_app.js", "src/components/blog_card.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/index.js", "src/pages/_app.js", "src/components/blog_card.jsx", "src/pages/auth/login.test.js", "jest.setup.js", "src/utils/ts"],
   "exclude": ["node_modules"]
 }

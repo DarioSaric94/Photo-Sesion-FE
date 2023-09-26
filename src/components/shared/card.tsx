@@ -21,10 +21,11 @@ export const Card: React.FC<CardProps> = ({
 
   return (
     <Box
+      data-testid="card"
       className={classNames}
       bgcolor={bgColor ? bgColor : 'primary.contrastText'}
       border={2}
-      width={width}
+      width={width || 'auto'}
       maxWidth={maxWidth}
       p={p ? p : 3}
       borderRadius={1}

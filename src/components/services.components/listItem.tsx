@@ -63,7 +63,7 @@ export const ListItem: React.FC<ListItemProps> = ({
           left={0}
           bgcolor="primary.light"
         >
-          <img src={image} height="100%" width="100%" />
+          <img src={image} height="100%" width="100%" alt={image} />
         </Box>
       </Box>
     </Grid>
