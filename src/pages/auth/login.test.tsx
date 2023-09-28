@@ -1,6 +1,6 @@
 import * as redux from 'react-redux';
 import { toast } from 'react-toastify';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import Login from './login';
 
 jest.mock('react-toastify');
@@ -12,6 +12,7 @@ jest.mock('react-redux', () => ({
   useDispatch: jest.fn(),
   useSelector: jest.fn(),
 }));
+
 
 describe('login', () => {
   const useDispatch = jest.spyOn(redux, 'useDispatch');
@@ -32,12 +33,12 @@ describe('login', () => {
       userData: {},
     });
 
-    const { getByLabelText, getByText } = render(<Login />);
+    render(<Login />);
 
-    const email = getByLabelText('Email address') as HTMLInputElement;
-    const password = getByLabelText('Password') as HTMLInputElement;
+    const email = screen.getByLabelText('Email address') as HTMLInputElement;
+    const password = screen.getByLabelText('Password') as HTMLInputElement;
 
-    const loginButton = getByText('LOGIN');
+    const loginButton = screen.getByText('LOGIN');
 
     fireEvent.change(email, { target: { value: 'email' } });
     fireEvent.change(password, {
@@ -48,8 +49,11 @@ describe('login', () => {
 
     await waitFor(() => {
       expect(pushMock).toHaveBeenCalledWith('/');
-      expect(toast.success).toHaveBeenCalledWith('Logged in successfully');
     });
+    await waitFor(() => {
+      expect(toast.success).toHaveBeenCalledWith('Logged in successfully');
+
+    })
 
     jest.clearAllMocks();
 
@@ -63,7 +67,9 @@ describe('login', () => {
 
     await waitFor(() => {
       expect(pushMock).not.toHaveBeenCalled();
-      expect(toast.error).toHaveBeenCalledWith('Incorrect email or password');
     });
+    await waitFor(() => {
+      expect(toast.error).toHaveBeenCalledWith('Incorrect email or password');
+    })
   });
 });

@@ -72,7 +72,9 @@ export const AddAlbum: React.FC<AddAlbumProps> = ({ onPostSuccess }) => {
   };
 
   return (
-    <Box>
+    <Box
+      data-testid="add-album-test"
+    >
       <CustomButton
         text="Dodajte Album"
         variant="outlined"

@@ -6,7 +6,8 @@ interface YoutubeVideoProps {
 
 export const YoutubeVideo: React.FC<YoutubeVideoProps> = ({ src }) => {
   return (
-    <Grid item xs={12} position="relative" pt="56.25%" mt={5}>
+    <Grid item xs={12} position="relative" pt="56.25%" mt={5}
+      data-testid='youtube-video'>
       <iframe
         style={{
           position: 'absolute',

@@ -12,19 +12,17 @@ jest.mock('next/router', () => ({
   }),
 }));
 jest.mock('../../utils/auth.api', () => ({
-  resetPassword: jest.fn(() => {
+  resetPassword: jest.fn(() =>
     Promise.resolve({
       statusCode: 200,
       message: 'Success message',
-    });
-  }),
+    })
+  ),
+
 }));
 
 describe('ResetPassword', () => {
-  const toastSuccessMock = toast.success as jest.Mock;
-  const toastErrorMock = toast.error as jest.Mock;
   const resetPasswordMock = resetPassword as jest.Mock;
-  const useRouterMock = useRouter as jest.Mock;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -37,14 +35,22 @@ describe('ResetPassword', () => {
     ) as HTMLInputElement;
     const sendInstructionsButton = screen.getByText('SEND INSTRUCTIONS');
 
-    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.change(emailInput, { target: { value: 'test@gmail.com' } });
     fireEvent.click(sendInstructionsButton);
 
     await waitFor(() => {
-      expect(resetPasswordMock).toHaveBeenCalledWith('test@example.com');
-      expect(toastSuccessMock).toHaveBeenCalledWith('Success message'); // Replace with your expected success message
-      expect(toastErrorMock).not.toHaveBeenCalled();
+      expect(resetPasswordMock).toHaveBeenCalledWith('test@gmail.com');
     });
+
+    await waitFor(() => {
+      expect(toast.error).not.toHaveBeenCalled();
+
+    })
+    await waitFor(() => {
+      expect(toast.success).toHaveBeenCalledWith('Success message');
+    })
+
+
   });
 
   it('handles reset password failure', async () => {
@@ -64,8 +70,14 @@ describe('ResetPassword', () => {
 
     await waitFor(() => {
       expect(resetPasswordMock).toHaveBeenCalledWith('invalid@example.com');
-      expect(toastSuccessMock).not.toHaveBeenCalled();
-      expect(toastErrorMock).toHaveBeenCalledWith('Invalid email');
     });
+
+    await waitFor(() => {
+      expect(toast.success).not.toHaveBeenCalled();
+    })
+
+    await waitFor(() => {
+      expect(toast.error).toHaveBeenCalledWith('Invalid email');
+    })
   });
 });

@@ -39,7 +39,9 @@ export const AddYoutubeLink: React.FC<AddYoutubeLinkProps> = ({
   };
 
   return (
-    <Box>
+    <Box
+      data-testid="youtube-link-test"
+    >
       <CustomButton
         text="Add Youtube Links"
         variant="outlined"

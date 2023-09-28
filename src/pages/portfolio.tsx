@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { useEffect, useState } from 'react';
 import { getYoutubeLinks } from '@/utils/youtubeLinks.api';
-import { getAlbums } from '@/utils/album.api';
 import { YoutubeLinks, YoutubeLinksRo } from '@/utils/types';
 
 export default function Portfolio() {
