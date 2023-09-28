@@ -1,15 +1,15 @@
 import { GET, POST } from './fetch';
 import { toast } from 'react-toastify';
 import { AlbumSesionRo, StatusCode } from './types';
-const ALBUM = 'album/';
-const DELETE = 'delete/';
-const PRIVATE = 'private/';
+export const ALBUM_URL = 'album/';
+export const DELETE_URL = 'delete/';
+export const PRIVATE_URL = 'private/';
 
 export const postAlbum = async (
   formData: FormData
 ): Promise<StatusCode | undefined> => {
   try {
-    return await POST(ALBUM, formData);
+    return await POST(ALBUM_URL, formData);
   } catch (error) {
     toast.error('Something went wrong');
   }
@@ -17,7 +17,7 @@ export const postAlbum = async (
 
 export const getAlbums = async (): Promise<AlbumSesionRo | undefined> => {
   try {
-    return await GET(ALBUM);
+    return await GET(ALBUM_URL);
   } catch (error) {}
 };
 
@@ -30,7 +30,7 @@ export const deleteAlbum = async (
   data: DeleteAlbumProps
 ): Promise<StatusCode | undefined> => {
   try {
-    return await POST(`${ALBUM}${DELETE}`, data);
+    return await POST(`${ALBUM_URL}${DELETE_URL}`, data);
   } catch (error) {
     toast.error('Something went wrong');
   }
@@ -45,7 +45,7 @@ export const getAlbumById = async (
   data: GetAlbumByIdProps
 ): Promise<AlbumSesionRo | undefined> => {
   try {
-    return await POST(`${ALBUM}${PRIVATE}`, data);
+    return await POST(`${ALBUM_URL}${PRIVATE_URL}`, data);
   } catch (error) {
     toast.error('Something went wrong');
   }
@@ -55,7 +55,7 @@ export const getAlbumByIdByAdmin = async (
   id: string
 ): Promise<AlbumSesionRo | undefined> => {
   try {
-    return await GET(`${ALBUM}${id}`);
+    return await GET(`${ALBUM_URL}${id}`);
   } catch (error) {
     toast.error('Something went wrong');
   }

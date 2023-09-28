@@ -10,18 +10,17 @@ describe('getImageFile', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+  const data = {
+    albumPath: 'albumPath',
+    albumPassword: 'albumPassword',
+    albumId: 123,
+  };
+  const mockResponse = {
+    url: 'https://example.com/image.jpg',
+    sessionToken: 'token',
+  };
 
   it('should call POST with the correct URL and data', async () => {
-    const data = {
-      albumPath: 'albumPath',
-      albumPassword: 'albumPassword',
-      albumId: 123,
-    };
-
-    const mockResponse = {
-      url: 'https://example.com/image.jpg',
-      sessionToken: 'token',
-    };
     postMock.mockResolvedValue(mockResponse);
 
     await getImageFile(data);
@@ -30,16 +29,6 @@ describe('getImageFile', () => {
   });
 
   it('should return the response on successful POST', async () => {
-    const data = {
-      albumPath: 'albumPath',
-      albumPassword: 'albumPassword',
-      albumId: 123,
-    };
-
-    const mockResponse = {
-      url: 'https://example.com/image.jpg',
-      sessionToken: 'token',
-    };
     postMock.mockResolvedValue(mockResponse);
 
     const result = await getImageFile(data);
@@ -48,12 +37,6 @@ describe('getImageFile', () => {
   });
 
   it('should handle errors and display a toast message', async () => {
-    const data = {
-      albumPath: 'albumPath',
-      albumPassword: 'albumPassword',
-      albumId: 123,
-    };
-
     const errorResponse = new Error('Network error');
     postMock.mockRejectedValue(errorResponse);
 

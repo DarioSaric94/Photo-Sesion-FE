@@ -1,6 +1,11 @@
 import { GET, POST } from './fetch';
 import { toast } from 'react-toastify';
 import { LoginUserRo, ResponseObj } from './types';
+export const AUTH_URL = 'auth/';
+export const RESET_PASSWORD_URL = 'reset-password/';
+export const LOGIN_URL = 'login/';
+export const CHANGE_PASSWORD_URL = 'change-password/';
+export const USER_URL = 'user/';
 
 interface SigninProps {
   email?: string;
@@ -11,7 +16,7 @@ export const signIn = async (
   data: SigninProps
 ): Promise<LoginUserRo | undefined> => {
   try {
-    return await POST('auth/login', data);
+    return await POST(`${AUTH_URL}${LOGIN_URL}`, data);
   } catch (error) {
     toast.error('Something went wrong');
   }
@@ -25,7 +30,7 @@ export const resetPassword = async (
   email: ResetPasswordProps
 ): Promise<ResponseObj | undefined> => {
   try {
-    return await POST('auth/reset-password', { email });
+    return await POST(`${AUTH_URL}${RESET_PASSWORD_URL}`, { email });
   } catch (error) {
     toast.error('Something went wrong');
   }
@@ -41,7 +46,7 @@ export const changePassword = async ({
   token,
 }: ChangePasswordProps): Promise<LoginUserRo | undefined> => {
   try {
-    return await POST(`auth/change-password/${token}`, {
+    return await POST(`${AUTH_URL}${CHANGE_PASSWORD_URL}${token}`, {
       password,
     });
   } catch (error) {
@@ -51,7 +56,7 @@ export const changePassword = async ({
 
 export const getUserData = async (): Promise<LoginUserRo | undefined> => {
   try {
-    return await GET(`auth/user`);
+    return await GET(`${AUTH_URL}${USER_URL}`);
   } catch (error) {
     toast.error('Something went wrong');
   }

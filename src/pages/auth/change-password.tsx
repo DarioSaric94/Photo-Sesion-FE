@@ -9,7 +9,7 @@ import { login } from '@/store/auth.slice';
 import { Input } from '@/components/shared/input';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
-export default function ResetPassword() {
+export default function ChangePassword() {
   const { handleSubmit, register } = useForm();
   const router = useRouter();
   const token = router.query.token as string;

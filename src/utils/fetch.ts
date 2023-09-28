@@ -1,4 +1,4 @@
-export const baseURL = 'http://localhost:3000/';
+export const BASE_URL = 'http://localhost:3000/';
 
 const getHeaders = (isFormData = false) => {
   const token = localStorage.getItem('ACCESS_TOKEN') || null;
@@ -22,7 +22,7 @@ const performRequest = async (
   const headers = getHeaders(isFormData);
 
   try {
-    const response = await fetch(baseURL + route, {
+    const response = await fetch(BASE_URL + route, {
       method,
       headers,
       body: isFormData ? data : JSON.stringify(data),
@@ -42,7 +42,7 @@ export const GET = async (route: string) => {
   return performRequest('GET', route, undefined);
 };
 
-export const PATCH = async (route: string, data = undefined) => {
+export const PATCH = async (route: string, data: any = undefined) => {
   return performRequest('PATCH', route, data);
 };
 

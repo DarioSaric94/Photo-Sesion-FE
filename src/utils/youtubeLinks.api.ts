@@ -1,7 +1,7 @@
 import { GET, POST } from './fetch';
 import { toast } from 'react-toastify';
-import { LoginUserRo, ResponseObj, YoutubeLinksRo } from './types';
-const YOUTUBE_LINKS = 'youtube-links/';
+import { ResponseObj, YoutubeLinksRo } from './types';
+export const YOUTUBE_LINKS_URL = 'youtube-links/';
 
 export interface PostYoutubeLinksProps {
   youtubeLink1?: string;
@@ -14,7 +14,7 @@ export const postYoutubeLinks = async (
   data: PostYoutubeLinksProps
 ): Promise<ResponseObj | undefined> => {
   try {
-    return await POST(YOUTUBE_LINKS, data);
+    return await POST(YOUTUBE_LINKS_URL, data);
   } catch (error) {
     toast.error('Something went wrong');
   }
@@ -24,6 +24,6 @@ export const getYoutubeLinks = async (): Promise<
   YoutubeLinksRo | undefined
 > => {
   try {
-    return await GET(YOUTUBE_LINKS);
+    return await GET(YOUTUBE_LINKS_URL);
   } catch (error) {}
 };
