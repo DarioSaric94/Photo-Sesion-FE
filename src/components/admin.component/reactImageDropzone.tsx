@@ -47,7 +47,7 @@ export const ReactImageDropzone: React.FC<ReactImageDropzoneProps> = ({
   };
 
   return (
-    <form>
+    <form data-testid="react-image-dropzone-test">
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <Box
@@ -142,6 +142,7 @@ export const ReactImageDropzone: React.FC<ReactImageDropzoneProps> = ({
                   position="relative"
                 >
                   <img
+                    data-testid="image-preview"
                     src={file.preview}
                     alt={file.name}
                     className="image-preview"
@@ -151,6 +152,7 @@ export const ReactImageDropzone: React.FC<ReactImageDropzoneProps> = ({
                   />
                   <Box position="absolute" zIndex={2} top={10} left={10}>
                     <ClearIcon
+                      date-testId="delete-icon-test"
                       color="secondary"
                       sx={{
                         bgcolor: 'secondary.light',

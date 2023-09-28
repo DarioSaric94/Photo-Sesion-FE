@@ -35,12 +35,14 @@ export const AddImage: React.FC<AddImageProps> = ({
   return (
     <label htmlFor={htmlFor} style={{ borderRadius: '50%' }}>
       <input
+        data-testid="image-file-input-test"
         id={htmlFor}
         type="file"
         style={{ display: 'none' }}
         onChange={handleImageChange}
       />
       <Avatar
+        data-testid="avatar-test"
         src={selectedImage}
         sx={{
           width: '200px',

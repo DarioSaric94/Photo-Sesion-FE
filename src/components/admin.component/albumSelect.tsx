@@ -15,7 +15,7 @@ export const AlbumSelect: React.FC<AlbumSelectProps> = ({
   label,
 }) => {
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth data-testid="album-select-test">
       <InputLabel
         id="demo-simple-select-label"
         sx={{
@@ -30,6 +30,7 @@ export const AlbumSelect: React.FC<AlbumSelectProps> = ({
         {label}
       </InputLabel>
       <Select
+        data-testid="album-select-data-test"
         MenuProps={{
           PaperProps: {
             style: {

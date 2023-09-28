@@ -45,6 +45,7 @@ export const Footer: React.FC<FooterProps> = ({ containerRef }) => {
 
   return (
     <Box
+      data-testid="footer-test"
       position="absolute"
       zIndex={showFooter ? 5 : -1}
       bottom={0}

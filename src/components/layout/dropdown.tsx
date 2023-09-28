@@ -48,6 +48,7 @@ export const DropDown: React.FC<DropDownProps> = ({ leaveMouse, display }) => {
       <Menu
         sx={{ background: 'transparent' }}
         id="menu"
+        data-testid="menu-test"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}

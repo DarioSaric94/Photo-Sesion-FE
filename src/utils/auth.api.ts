@@ -7,12 +7,13 @@ interface SigninProps {
   password?: string;
 }
 
-export const signIn = async (data: SigninProps): Promise<LoginUserRo> => {
+export const signIn = async (
+  data: SigninProps
+): Promise<LoginUserRo | undefined> => {
   try {
     return await POST('auth/login', data);
   } catch (error) {
     toast.error('Something went wrong');
-    throw error;
   }
 };
 

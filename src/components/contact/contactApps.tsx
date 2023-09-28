@@ -11,7 +11,12 @@ interface ContactAppsProps {
 export const ContactApps: React.FC<ContactAppsProps> = ({ data, icon }) => {
   const router = useRouter();
   return (
-    <Box display="flex" alignItems="center" mt={1.5}>
+    <Box
+      display="flex"
+      alignItems="center"
+      mt={1.5}
+      data-testid="contact-apps-test"
+    >
       <Box>
         {React.cloneElement(icon, {
           sx: {

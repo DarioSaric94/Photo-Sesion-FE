@@ -3,13 +3,9 @@ import { render, screen } from '@testing-library/react';
 import { Container } from './container';
 import * as nextRouter from 'next/router';
 import { PageTexts } from '@/helpers/pageProps';
+
 jest.mock('next/router', () => ({
   useRouter: jest.fn(),
-}));
-
-jest.mock('react-redux', () => ({
-  ...jest.requireActual('react-redux'),
-  useSelector: jest.fn(),
 }));
 
 const mockPageTexts: Record<string, PageTexts> = {

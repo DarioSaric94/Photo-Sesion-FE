@@ -14,6 +14,7 @@ export const SmallScreenDrawer: React.FC<SmallScreenDrawerProps> = ({
   const [openPhotoPlus, setOpenPhotoPlus] = useState<boolean>(false);
   return (
     <Drawer
+      data-testid="small-screen-drawer-test"
       sx={{ display: { xs: 'flex', lg: 'none' } }}
       anchor="right"
       open={openDrawer}

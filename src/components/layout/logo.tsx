@@ -5,6 +5,7 @@ export const Logo = () => {
   const router = useRouter();
   return (
     <Box
+      data-testid="logo-test"
       display="flex"
       letterSpacing={-0.5}
       fontWeight="bold"

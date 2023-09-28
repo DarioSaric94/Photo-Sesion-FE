@@ -19,6 +19,7 @@ export const CustomDrawer: React.FC<CustomDrawerProps> = ({
   const router = useRouter();
   return (
     <Drawer
+      data-testid="custom-drawer-test"
       anchor="right"
       open={openDrawer}
       onClose={() => onClose(false)}

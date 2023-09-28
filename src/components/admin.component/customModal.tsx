@@ -21,6 +21,7 @@ export const CustomModal: React.FC<CustomModalProps> = ({
     <Modal
       open={open}
       onClose={onClose}
+      data-testid="custom-modal-test"
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
     >

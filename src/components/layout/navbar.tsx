@@ -20,13 +20,20 @@ export const Navbar = () => {
   const router = useRouter();
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     const userData = async () => {
-      const response: any = await getUserData();
-      dispatch(setUserData(response));
+      try {
+        const response: any = await getUserData();
+        dispatch(setUserData(response));
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
     };
+
     userData();
-  });
+    console.log('radi');
+  }, [dispatch]);
   return (
     <>
       <Box
