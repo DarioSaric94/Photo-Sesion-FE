@@ -27,7 +27,7 @@ export default function Private() {
   useEffect(() => {
     const getAlbumsData = async () => {
       const response: any = await getAlbums();
-      setAlbumsData(response);
+      setAlbumsData(response?.data);
     };
     getAlbumsData();
   }, [isSuccess]);
@@ -44,7 +44,7 @@ export default function Private() {
       albumId: selectedAlbum?.id,
       password,
     });
-    if (response?.statusCode === 204) {
+    if (response?.status === 201) {
       toast.success('Album uspješno obrisan');
       reset();
       setOpenModal(false);

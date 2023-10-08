@@ -20,8 +20,9 @@ export default function Portfolio() {
   useEffect(() => {
     const handleGetYoutubeLinks = async () => {
       const response: any = await getYoutubeLinks();
-      setYoutubeLinksData(response?.youtubeLinks);
-      setAlbumsData(response);
+      console.log(response);
+      setYoutubeLinksData(response?.data?.youtubeLinks);
+      setAlbumsData(response?.data);
     };
     handleGetYoutubeLinks();
   }, [isSuccess]);

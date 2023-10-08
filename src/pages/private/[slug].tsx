@@ -25,12 +25,12 @@ export default function PrivateAlbum() {
 
   const handleGetAlbum: SubmitHandler<FieldValues> = async ({ password }) => {
     const response = await getAlbumById({ id, password });
-    if (response?.statusCode === 200) {
+    if (response?.status === 201) {
       toast.success('Album je otključan');
       setLockedAlbum(true);
-      setAlbumData(response?.album);
+      setAlbumData(response?.data?.album);
     } else {
-      toast.warning(response?.message);
+      toast.warning(response?.data?.message);
     }
   };
 
@@ -39,8 +39,8 @@ export default function PrivateAlbum() {
       if (isAdmin === 1) {
         if (!id) return;
         const response: any = await getAlbumByIdByAdmin(id);
-        if (response?.statusCode === 200) setAlbumData(response?.album);
-        else toast.warning(response?.message);
+        if (response?.status === 201) setAlbumData(response?.data?.album);
+        else toast.warning(response?.data?.message);
       } else {
         handleGetAlbum;
       }
@@ -150,113 +150,3 @@ export default function PrivateAlbum() {
     </Grid>
   );
 }
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import PrivateAlbum from './PrivateAlbum';
-import * as redux from 'react-redux';
-import * as albumApi from '../../utils/album.api';
-
-// Mock useSelector
-jest.mock('react-redux', () => ({
-  useSelector: jest.fn(),
-}));
-
-// Mock useRouter
-jest.mock('next/router', () => ({
-  useRouter: () => ({
-    query: { slug: 'mockAlbumId' }, // Mock router query
-  }),
-}));
-
-// Mock the getAlbumById and getAlbumByIdByAdmin functions
-jest.mock('../../utils/album.api', () => ({
-  getAlbumById: jest.fn(),
-  getAlbumByIdByAdmin: jest.fn(),
-}));
-
-// Mock the toast function from react-toastify
-jest.mock('react-toastify', () => ({
-  toast: {
-    success: jest.fn(),
-    warning: jest.fn(),
-  },
-}));
-
-describe('PrivateAlbum Component', () => {
-  const useSelectorMock = jest.spyOn(redux, 'useSelector');
-  const getAlbumByIdMock = jest.spyOn(albumApi, 'getAlbumById');
-  const getAlbumByIdByAdminMock = jest.spyOn(albumApi, 'getAlbumByIdByAdmin');
-
-  beforeEach(() => {
-    useSelectorMock.mockReturnValue(1); // Mock isAdmin as an admin user
-  });
-
-  it('renders without crashing', () => {
-    render(<PrivateAlbum />);
-    // You can add more specific assertions here as needed
-  });
-
-  it('displays album information for admin users', async () => {
-    const mockAlbumData = {
-      albumName: 'Test Album',
-      participants: 'Test Participants',
-      albumPassword: 'TestPassword123',
-      images: [{ id: 1, image: 'image-url' }],
-      trailerVideo: 'trailer-url',
-      mainVideo: 'main-url',
-    };
-
-    getAlbumByIdByAdminMock.mockResolvedValueOnce({ statusCode: 200, album: mockAlbumData });
-
-    render(<PrivateAlbum />);
-
-    // Wait for album information to load
-    await waitFor(() => {
-      expect(screen.getByText('Test Album')).toBeInTheDocument();
-      expect(screen.getByText('Test Participants')).toBeInTheDocument();
-      expect(screen.getByText('Lozinka: TestPassword123')).toBeInTheDocument();
-      expect(screen.getByText('Zaključano')).toBeInTheDocument(); // Expect the "Zaključano" message
-    });
-
-    // You can add more specific assertions for images and videos if needed
-  });
-
-  it('handles album unlocking for non-admin users', async () => {
-    const mockAlbumData = {
-      statusCode: 200,
-      album: {
-        albumName: 'Test Album',
-        participants: 'Test Participants',
-        images: [{ id: 1, image: 'image-url' }],
-        trailerVideo: 'trailer-url',
-        mainVideo: 'main-url',
-      },
-    };
-
-    getAlbumByIdMock.mockResolvedValueOnce(mockAlbumData);
-
-    render(<PrivateAlbum />);
-
-    // Wait for the password input field to appear
-    await waitFor(() => {
-      expect(screen.getByLabelText('Lozinka Albuma')).toBeInTheDocument();
-    });
-
-    // Simulate entering a password and unlocking the album
-    const passwordInput = screen.getByLabelText('Lozinka Albuma');
-    fireEvent.change(passwordInput, { target: { value: 'TestPassword123' } });
-
-    const submitButton = screen.getByText('Potvrdi');
-    fireEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(screen.getByText('Test Album')).toBeInTheDocument();
-    });
-
-    await waitFor(() => {
-      expect(screen.getByText('Test Participants')).toBeInTheDocument();
-    })
-
-    expect(screen.queryByText('Zaključano')).not.toBeInTheDocument();
-  });
-});

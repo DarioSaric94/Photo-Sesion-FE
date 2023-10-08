@@ -47,12 +47,11 @@ export default function Profile() {
 
     try {
       const response: any = await postUserData(formData);
-      if (response?.statusCode === 200) {
-        console.log(response);
-        toast.success('Podatci Ažurirani');
+      if (response?.status === 201) {
+        toast.success(response?.data?.message);
         router.push('/');
       } else {
-        toast.warning(response?.message);
+        toast.warning(response?.data?.message);
       }
     } catch (error) {
       throw error;

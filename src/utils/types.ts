@@ -6,13 +6,28 @@ export interface UserData extends UserInfo {
   token: string;
 }
 
-export interface LoginUserRo extends ResponseObj {
-  userData: UserData;
+// export interface LoginUserRo extends ResponseObj {
+//   userData: UserData;
+// }
+
+export interface MessageObj extends Status {
+  data: {
+    message: string;
+  };
 }
 
-export interface ResponseObj {
-  statusCode: number;
-  message: string;
+export interface Status {
+  isLoading: boolean;
+  status: number;
+}
+
+export interface LoginUserRo {
+  data: {
+    message: string;
+    userData: UserData;
+  };
+  isLoading: boolean;
+  status: number;
 }
 
 export interface UserInfo {
@@ -31,8 +46,10 @@ export interface UserInfo {
   image?: string;
 }
 
-export interface UserInfoRo extends StatusCode {
-  userData: UserInfo;
+export interface UserInfoRo {
+  data: {
+    userData: UserInfo;
+  };
 }
 
 export interface AlbumSesion {
@@ -46,8 +63,11 @@ export interface AlbumSesion {
   images: ImagesRo[];
 }
 
-export interface AlbumSesionRo extends StatusCode {
-  album: AlbumSesion;
+export interface AlbumSesionRo extends Status {
+  data: {
+    album: AlbumSesion;
+    message: ?string;
+  };
 }
 
 export interface ImagesRo {
@@ -62,9 +82,11 @@ export interface StatusCode {
 }
 
 export interface YoutubeLinksRo {
-  album: AlbumSesion;
-  albumsData?: AlbumData[];
-  youtubeLinks?: YoutubeLinks;
+  data: {
+    album: AlbumSesion;
+    albumsData?: AlbumData[];
+    youtubeLinks?: YoutubeLinks;
+  };
 }
 
 export interface AlbumData {
@@ -85,7 +107,10 @@ export interface ExtendedFile extends File {
   preview: string;
 }
 
-export interface FileImagesRo extends ResponseObj {
-  url: string;
-  sessionToken: string;
+export interface FileImagesRo extends Status {
+  data: {
+    url: string;
+    sessionToken: string;
+    message?: string;
+  };
 }

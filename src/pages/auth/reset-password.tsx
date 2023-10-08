@@ -15,10 +15,11 @@ export default function ResetPassword() {
     email,
   }) => {
     const response = await resetPassword(email);
-    if (response?.statusCode === 200) {
-      toast.success(response?.message);
+
+    if (response?.status === 201) {
+      toast.success(response?.data?.message);
     } else {
-      toast.error(response?.message);
+      toast.error(response?.data?.message);
     }
   };
   return (

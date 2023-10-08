@@ -15,14 +15,15 @@ export default function Login() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const loginUserHandler: SubmitHandler<FieldValues> = async (data) => {
-    const response = await signIn(data);
-    if (response?.statusCode === 200) {
-      toast.success(response?.message);
-      dispatch(login(response?.userData));
+  const loginUserHandler: SubmitHandler<FieldValues> = async (formValues) => {
+    const response: any = await signIn(formValues);
+    console.log(response);
+    if (response?.status === 201) {
+      toast.success(response?.data?.message);
+      dispatch(login(response?.data?.userData));
       router.push('/');
     } else {
-      toast.error(response?.message);
+      toast.error(response?.data?.message);
     }
   };
   return (

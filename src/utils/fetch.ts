@@ -21,6 +21,8 @@ const performRequest = async (
   const isFormData = data instanceof FormData;
   const headers = getHeaders(isFormData);
 
+  let isLoading = true;
+
   try {
     const response = await fetch(BASE_URL + route, {
       method,
@@ -28,8 +30,10 @@ const performRequest = async (
       body: isFormData ? data : JSON.stringify(data),
     });
     const json = await response.json();
-    return json;
+
+    return { data: json, isLoading, status: response.status };
   } catch (error) {
+    isLoading = false;
     throw error;
   }
 };

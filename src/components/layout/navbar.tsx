@@ -25,7 +25,8 @@ export const Navbar = () => {
     const userData = async () => {
       try {
         const response: any = await getUserData();
-        dispatch(setUserData(response));
+        console.log(response);
+        dispatch(setUserData(response?.data));
       } catch (error) {
         console.error('Error fetching user data:', error);
       }

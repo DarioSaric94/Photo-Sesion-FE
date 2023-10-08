@@ -56,12 +56,12 @@ export const AddAlbum: React.FC<AddAlbumProps> = ({ onPostSuccess }) => {
       formData.append('image', image);
     });
     const response: any = await postAlbum(formData);
-    if (response?.statusCode === 201) {
+    if (response?.status === 201) {
       handleClearInputData();
-      onPostSuccess(response);
+      onPostSuccess(response?.data);
       toast.success('Album Postavljen Uspješno');
     } else {
-      toast.error(response?.error);
+      toast.error(response?.data?.message);
     }
   };
 
@@ -72,9 +72,7 @@ export const AddAlbum: React.FC<AddAlbumProps> = ({ onPostSuccess }) => {
   };
 
   return (
-    <Box
-      data-testid="add-album-test"
-    >
+    <Box data-testid="add-album-test">
       <CustomButton
         text="Dodajte Album"
         variant="outlined"

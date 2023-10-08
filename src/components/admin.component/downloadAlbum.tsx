@@ -7,7 +7,7 @@ import { Input } from '../shared/input';
 import { Box } from '@mui/material';
 import { AlbumSesion } from '@/utils/types';
 import { toast } from 'react-toastify';
-import { baseURL } from '@/utils/fetch';
+import { BASE_URL } from '@/utils/fetch';
 
 interface DownloadAlbumProps {
   albumData: AlbumSesion | null;
@@ -27,14 +27,14 @@ export const DownloadAlbum: React.FC<DownloadAlbumProps> = ({ albumData }) => {
         albumId: albumData?.id,
       });
 
-      if (response?.statusCode === 200) {
+      if (response?.status === 201) {
         setOpenModal(false);
         window.open(
-          `${baseURL}${FILE_URL}${response?.url}?sessionToken=${response?.sessionToken}&albumId=${albumData?.id}`,
+          `${BASE_URL}${FILE_URL}${response?.data?.url}?sessionToken=${response?.data?.sessionToken}&albumId=${albumData?.id}`,
           '_blank'
         );
       } else {
-        toast.warning(response?.message);
+        toast.warning(response?.data?.message);
       }
     } else {
       console.error('Album ne postoji');
