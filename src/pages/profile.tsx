@@ -48,10 +48,10 @@ export default function Profile() {
     try {
       const response: any = await postUserData(formData);
       if (response?.status === 201) {
-        toast.success(response?.data?.message);
+        toast.success(response?.message);
         router.push('/');
       } else {
-        toast.warning(response?.data?.message);
+        toast.warning(response?.message);
       }
     } catch (error) {
       throw error;

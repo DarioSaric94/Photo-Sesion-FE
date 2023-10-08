@@ -16,10 +16,10 @@ export default function ResetPassword() {
   }) => {
     const response = await resetPassword(email);
 
-    if (response?.status === 201) {
-      toast.success(response?.data?.message);
+    if (response?.status === 200) {
+      toast.success(response?.message);
     } else {
-      toast.error(response?.data?.message);
+      toast.error(response?.message);
     }
   };
   return (

@@ -12,7 +12,6 @@ describe('postUserData', () => {
   });
   const responseMock: UserInfoRo = {
     userData: {},
-    statusCode: 0,
   };
   const formData = new FormData();
   const postMock = jest.spyOn(fetchModule, 'POST');
@@ -49,7 +48,6 @@ describe('getUserData', () => {
   });
   const responseMock: UserInfoRo = {
     userData: {},
-    statusCode: 0,
   };
   const getMock = jest.spyOn(fetchModule, 'GET');
 

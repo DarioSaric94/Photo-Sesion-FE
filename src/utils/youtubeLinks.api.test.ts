@@ -6,7 +6,7 @@ import {
 } from './youtubeLinks.api';
 import { toast } from 'react-toastify';
 import * as fetchModule from './fetch';
-import { ResponseObj, YoutubeLinksRo } from './types';
+import { ResponseRo, YoutubeLinksRo } from './types';
 
 jest.mock('./fetch');
 jest.mock('react-toastify');
@@ -15,8 +15,8 @@ describe('postYoutubeLinks', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-  const responseMock: ResponseObj = {
-    statusCode: 201,
+  const responseMock: ResponseRo = {
+    status: 201,
     message: 'message',
   };
   const data: PostYoutubeLinksProps = {
