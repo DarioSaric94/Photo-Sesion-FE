@@ -27,14 +27,14 @@ export const DownloadAlbum: React.FC<DownloadAlbumProps> = ({ albumData }) => {
         albumId: albumData?.id,
       });
 
-      if (response?.status === 201) {
+      if (response?.status === 200) {
         setOpenModal(false);
         window.open(
-          `${BASE_URL}${FILE_URL}${response?.data?.url}?sessionToken=${response?.data?.sessionToken}&albumId=${albumData?.id}`,
+          `${BASE_URL}${FILE_URL}${response?.url}?sessionToken=${response?.sessionToken}&albumId=${albumData?.id}`,
           '_blank'
         );
       } else {
-        toast.warning(response?.data?.message);
+        toast.warning(response?.message);
       }
     } else {
       console.error('Album ne postoji');
