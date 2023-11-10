@@ -25,7 +25,7 @@ export default function PrivateAlbum() {
 
   const handleGetAlbum: SubmitHandler<FieldValues> = async ({ password }) => {
     const response = await getAlbumById({ id, password });
-    if (response?.statusCode === 200) {
+    if (response?.status === 200) {
       toast.success('Album je otključan');
       setLockedAlbum(true);
       setAlbumData(response?.album);
@@ -39,7 +39,7 @@ export default function PrivateAlbum() {
       if (isAdmin === 1) {
         if (!id) return;
         const response: any = await getAlbumByIdByAdmin(id);
-        if (response?.statusCode === 200) setAlbumData(response?.album);
+        if (response?.status === 200) setAlbumData(response?.album);
         else toast.warning(response?.message);
       } else {
         handleGetAlbum;

@@ -1,6 +1,6 @@
 import { GET, POST } from './fetch';
 import { toast } from 'react-toastify';
-import { LoginUserRo, ResponseObj } from './types';
+import { LoginUserRo, ResponseRo } from './types';
 export const AUTH_URL = 'auth/';
 export const RESET_PASSWORD_URL = 'reset-password/';
 export const LOGIN_URL = 'login/';
@@ -28,7 +28,7 @@ interface ResetPasswordProps {
 
 export const resetPassword = async (
   email: ResetPasswordProps
-): Promise<ResponseObj | undefined> => {
+): Promise<ResponseRo | undefined> => {
   try {
     return await POST(`${AUTH_URL}${RESET_PASSWORD_URL}`, { email });
   } catch (error) {

@@ -21,7 +21,7 @@ export default function ChangePassword() {
       return;
     }
     const response = await changePassword({ password: data.password, token });
-    if (response?.statusCode === 201) {
+    if (response?.status === 200) {
       toast.success(response?.message);
       dispatch(login(response?.userData));
       router.push('/');

@@ -1,13 +1,13 @@
 import { GET, POST } from './fetch';
 import { toast } from 'react-toastify';
-import { AlbumSesionRo, StatusCode } from './types';
+import { AlbumSesionRo, ResponseRo } from './types';
 export const ALBUM_URL = 'album/';
 export const DELETE_URL = 'delete/';
 export const PRIVATE_URL = 'private/';
 
 export const postAlbum = async (
   formData: FormData
-): Promise<StatusCode | undefined> => {
+): Promise<ResponseRo | undefined> => {
   try {
     return await POST(ALBUM_URL, formData);
   } catch (error) {
@@ -28,7 +28,7 @@ interface DeleteAlbumProps {
 
 export const deleteAlbum = async (
   data: DeleteAlbumProps
-): Promise<StatusCode | undefined> => {
+): Promise<ResponseRo | undefined> => {
   try {
     return await POST(`${ALBUM_URL}${DELETE_URL}`, data);
   } catch (error) {

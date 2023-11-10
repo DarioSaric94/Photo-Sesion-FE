@@ -44,7 +44,7 @@ export default function Private() {
       albumId: selectedAlbum?.id,
       password,
     });
-    if (response?.statusCode === 204) {
+    if (response === 204) {
       toast.success('Album uspješno obrisan');
       reset();
       setOpenModal(false);

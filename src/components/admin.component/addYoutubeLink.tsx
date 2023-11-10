@@ -29,9 +29,9 @@ export const AddYoutubeLink: React.FC<AddYoutubeLinkProps> = ({
       ...data,
       albumId: Number(album),
     });
-    if (response?.statusCode === 200) {
+    if (response?.status === 200) {
       toast.success('Podatci Uspješno Promjenjeni');
-      onPostSuccessChange(response);
+      onPostSuccessChange(true);
       setOpenModal(false);
     } else {
       toast.error(response?.error);
@@ -39,9 +39,7 @@ export const AddYoutubeLink: React.FC<AddYoutubeLinkProps> = ({
   };
 
   return (
-    <Box
-      data-testid="youtube-link-test"
-    >
+    <Box data-testid="youtube-link-test">
       <CustomButton
         text="Add Youtube Links"
         variant="outlined"

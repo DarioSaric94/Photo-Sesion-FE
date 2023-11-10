@@ -11,7 +11,7 @@ import {
 } from './auth.api';
 import { toast } from 'react-toastify';
 import * as fetchModule from './fetch';
-import { LoginUserRo, ResponseObj } from './types';
+import { LoginUserRo, ResponseRo } from './types';
 
 jest.mock('./fetch');
 jest.mock('react-toastify');
@@ -28,7 +28,7 @@ describe('signIn', () => {
       role: 1,
       token: 'token',
     },
-    statusCode: 200,
+    status: 200,
     message: 'message',
   };
   const data = {
@@ -70,8 +70,8 @@ describe('resetPassword', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-  const mockResponse: ResponseObj = {
-    statusCode: 200,
+  const mockResponse: ResponseRo = {
+    status: 200,
     message: 'message',
   };
   const email = { email: 'someEmail' };
@@ -120,7 +120,7 @@ describe('changePassword', () => {
       role: 1,
       token: 'token',
     },
-    statusCode: 200,
+    status: 200,
     message: 'message',
   };
   const data = { password: 'password', token: 'token' };
@@ -170,7 +170,7 @@ describe('getUserData', () => {
       role: 1,
       token: 'token',
     },
-    statusCode: 200,
+    status: 200,
     message: 'message',
   };
   const postMock = jest.spyOn(fetchModule, 'GET');

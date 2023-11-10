@@ -15,7 +15,8 @@ export default function ResetPassword() {
     email,
   }) => {
     const response = await resetPassword(email);
-    if (response?.statusCode === 200) {
+
+    if (response?.status === 200) {
       toast.success(response?.message);
     } else {
       toast.error(response?.message);

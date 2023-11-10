@@ -28,6 +28,7 @@ const performRequest = async (
       body: isFormData ? data : JSON.stringify(data),
     });
     const json = await response.json();
+
     return json;
   } catch (error) {
     throw error;

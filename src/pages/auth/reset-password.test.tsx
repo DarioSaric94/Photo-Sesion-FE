@@ -3,7 +3,6 @@ import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import ResetPassword from './reset-password';
 import { toast } from 'react-toastify';
 import { resetPassword } from '../../utils/auth.api';
-import { useRouter } from 'next/router';
 
 jest.mock('react-toastify');
 jest.mock('next/router', () => ({
@@ -18,7 +17,6 @@ jest.mock('../../utils/auth.api', () => ({
       message: 'Success message',
     })
   ),
-
 }));
 
 describe('ResetPassword', () => {
@@ -44,13 +42,10 @@ describe('ResetPassword', () => {
 
     await waitFor(() => {
       expect(toast.error).not.toHaveBeenCalled();
-
-    })
+    });
     await waitFor(() => {
       expect(toast.success).toHaveBeenCalledWith('Success message');
-    })
-
-
+    });
   });
 
   it('handles reset password failure', async () => {
@@ -74,10 +69,10 @@ describe('ResetPassword', () => {
 
     await waitFor(() => {
       expect(toast.success).not.toHaveBeenCalled();
-    })
+    });
 
     await waitFor(() => {
       expect(toast.error).toHaveBeenCalledWith('Invalid email');
-    })
+    });
   });
 });

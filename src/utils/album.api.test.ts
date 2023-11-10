@@ -56,7 +56,7 @@ describe('getAlbums', () => {
     jest.clearAllMocks();
   });
   const responseAlbumMock: AlbumSesionRo = {
-    statusCode: 200,
+    status: 200,
     album: {
       id: 1,
       albumName: 'Test Album',
@@ -132,7 +132,7 @@ describe('getAlbumById', () => {
       albumPath: 'albumPath',
       images: [],
     },
-    statusCode: 200,
+    status: 200,
   };
   const data = {
     id: '1',
@@ -176,7 +176,7 @@ describe('getAlbumByIdByAdmin', () => {
       albumPath: 'albumPath',
       images: [],
     },
-    statusCode: 200,
+    status: 200,
   };
   const id = '1';
   const getMock = jest.spyOn(fetchModule, 'GET');

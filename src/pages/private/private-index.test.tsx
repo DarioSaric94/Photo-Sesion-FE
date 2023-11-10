@@ -23,7 +23,7 @@ jest.mock('react-toastify', () => ({
 
 jest.mock('react-hook-form', () => ({
   useForm: jest.fn(() => ({
-    handleSubmit: jest.fn(fn => fn),
+    handleSubmit: jest.fn((fn) => fn),
     register: jest.fn(),
     reset: jest.fn(),
   })),
@@ -35,17 +35,15 @@ jest.mock('next/router', () => ({
   }),
 }));
 
-
-
 const mockAlbumsData: AlbumSesionRo = {
   album: {
     id: 1,
     albumName: 'albumName',
     participants: 'participants',
     albumPath: 'albumPath',
-    images: []
+    images: [],
   },
-  statusCode: 0
+  status: 0,
 };
 
 describe('Private Component', () => {
@@ -57,8 +55,8 @@ describe('Private Component', () => {
     getAlbums.mockResolvedValue(mockAlbumsData);
   });
   it('renders without crashing', () => {
-    render(<Private />)
-  })
+    render(<Private />);
+  });
 
   it('renders addAlbum correctly when isAdmin is 1', async () => {
     render(<Private />);
@@ -66,7 +64,7 @@ describe('Private Component', () => {
 
     setTimeout(() => {
       expect(screen.getByTestId('add-album-test')).toBeInTheDocument();
-    }, 300)
+    }, 300);
 
     useSelectorMock.mockReturnValue(0);
 
